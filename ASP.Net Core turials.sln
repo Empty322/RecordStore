@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.Net Core turials", "ASP.Net Core turials\ASP.Net Core turials.csproj", "{14A68254-D099-4C38-8734-06CE23CB3A57}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{2AA04D83-48A8-4341-9DA5-473A3A4D940F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{14A68254-D099-4C38-8734-06CE23CB3A57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14A68254-D099-4C38-8734-06CE23CB3A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14A68254-D099-4C38-8734-06CE23CB3A57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14A68254-D099-4C38-8734-06CE23CB3A57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AA04D83-48A8-4341-9DA5-473A3A4D940F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AA04D83-48A8-4341-9DA5-473A3A4D940F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AA04D83-48A8-4341-9DA5-473A3A4D940F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AA04D83-48A8-4341-9DA5-473A3A4D940F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E05BF5BC-0D7F-4FD2-86F5-BE36E9063027}
+	EndGlobalSection
+EndGlobal
