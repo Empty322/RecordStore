@@ -3,9 +3,70 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ASP.Net_Core_turials</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+    </environment>
+    <link type="text/css" rel="stylesheet" href="~/css/site.css" />
+    <title>ASP.Net_Core</title>
 </head>
-<body>    
-    @RenderBody()
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a href="~/#" class="navbar-brand">
+            <img src="~/img/brand.svg" height="40" />
+            Store
+        </a>
+        <button class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button">Account</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" asp-controller="Account" asp-action="Index">Index</a>
+                        <a class="dropdown-item" asp-controller="Account" asp-action="Private">Privare page</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="About" asp-action="Index">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col col-sm-3 side-menu">
+                @Html.Partial("SideMenu")
+            </div>
+            <div class="col col-sm-9">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+    </environment>
+
+    @RenderSection("scripts", required: false)
 </body>
 </html>

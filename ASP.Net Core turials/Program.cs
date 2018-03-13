@@ -21,7 +21,18 @@ namespace ASP.Net_Core_turials
             new WebHostBuilder()
 				.UseKestrel()
 				.UseContentRoot(Directory.GetCurrentDirectory())
-                .UseStartup<Startup>()
+				.ConfigureAppConfiguration((hostingContext, config) =>
+				{
+					config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+						  .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", optional: true, reloadOnChange: true);
+				})
+				.ConfigureLogging((hostingContext, logging) =>
+				{
+					logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+					logging.AddConsole();
+					logging.AddDebug();
+				})
+				.UseStartup<Startup>()
                 .Build();
     }
 }

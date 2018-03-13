@@ -1,1 +1,20 @@
-﻿<h1>Home Index</h1>
+﻿@model IEnumerable<Data.Entities.Record>
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="row">
+    @foreach(Data.Entities.Record r in Model)
+    {
+    <div class="col-sm-4">
+        <div class="card">
+            <img class="card-img-top" src="~/img/pleasure-to-kill.jpg">
+            <div class="card-body">
+                <h5 class="card-title">Artist</h5>
+                <p class="card-text">@r.Title</p>
+                <a href="#" class="btn btn-primary">More info</a>
+            </div>
+        </div>
+    </div>
+    }
+</div>

@@ -8,11 +8,5 @@ namespace ASP.Net_Core_turials.Controllers
         {
             return View();
         }
-
-        public IActionResult TellMeMore(string moreInfo = "")
-        {
-			ViewBag.MoreInfo = moreInfo;
-            return View();
-        }
     }
 }
