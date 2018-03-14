@@ -1,6 +1,4 @@
-﻿
-using System.Text;
-using Data;
+﻿using Data;
 using Data.Interfaces;
 using Data.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -9,11 +7,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
 
 namespace ASP.Net_Core_turials
 {
-    public class Startup
+	public class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -27,6 +24,9 @@ namespace ASP.Net_Core_turials
         {
 			services.AddDbContext<ApplicationDbContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 			services.AddTransient<IRecordRepository, RecordRepository>();
+			services.AddTransient<IArtistRepository, ArtistRepository>();
+			services.AddTransient<ICountryRepository, CountryRepository>();
+
 			services.AddIdentity<ApplicationUser, IdentityRole>()
 				.AddEntityFrameworkStores<ApplicationDbContext>()
 				.AddDefaultTokenProviders();
@@ -38,6 +38,7 @@ namespace ASP.Net_Core_turials
 				options.Password.RequireUppercase = false;
 				options.Password.RequireNonAlphanumeric = false;
 			});
+
             services.AddMvc();
 		}
 
@@ -65,6 +66,8 @@ namespace ASP.Net_Core_turials
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+			//DbInitializer.Seed(app);
         }
     }
 }

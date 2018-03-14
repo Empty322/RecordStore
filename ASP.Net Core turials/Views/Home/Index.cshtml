@@ -1,17 +1,18 @@
-﻿@model IEnumerable<Data.Entities.Record>
+﻿@using ASP.Net_Core_turials.Models
+@model IEnumerable<RecordViewModel>
 @{
     ViewData["Title"] = "Home";
 }
 
 <div class="row">
-    @foreach(Data.Entities.Record r in Model)
+    @foreach(RecordViewModel r in Model)
     {
     <div class="col-sm-4">
         <div class="card">
-            <img class="card-img-top" src="~/img/pleasure-to-kill.jpg">
+            <img class="card-img-top" src="~/img/placeholder.jpg">
             <div class="card-body">
-                <h5 class="card-title">Artist</h5>
-                <p class="card-text">@r.Title</p>
+                <h5 class="card-title">@r.ArtistName</h5>
+                <p class="card-text">@r.Record.Title</p>
                 <a href="#" class="btn btn-primary">More info</a>
             </div>
         </div>

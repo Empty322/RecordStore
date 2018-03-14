@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -9,6 +10,10 @@ namespace Data
 	public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
 		public DbSet<Record> Records { get; set; }
+
+		public DbSet<Artist> Artists { get; set; }
+
+		public DbSet<Country> Countries { get; set; }
 
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
 		{
@@ -23,6 +28,10 @@ namespace Data
 			}
 
 			base.OnModelCreating(modelBuilder);
+
+			modelBuilder.Entity<Artist>().HasMany(a => a.Records).WithOne(r => r.Artist);
+			modelBuilder.Entity<Artist>().Property(a => a.ImageData).HasColumnType("varbinary(3072)");
+			modelBuilder.Entity<Record>().Property(r => r.ImageData).HasColumnType("varbinary(3072)");
 
 			modelBuilder.Entity<ApplicationUser>().Property(u => u.Id).HasMaxLength(128);
 			modelBuilder.Entity<IdentityRole>().Property(r => r.Id).HasMaxLength(128);

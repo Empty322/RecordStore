@@ -3,7 +3,7 @@
 namespace Data.Entities
 {
 	public class Record
-    {
+	{
 		[Key]
 		public int RecordId { get; set; }
 
@@ -12,10 +12,22 @@ namespace Data.Entities
 		public string Title { get; set; }
 
 		[Required]
+		public string Description { get; set; }
+
+		[Required]
 		public int Amount { get; set; }
 
 		[Required]
 		[MaxLength(15)]
 		public string Type { get; set; }
+
+		[Required]
+		public Artist Artist { get; set; }
+		[Required]
+		public int ArtistId { get; set; }
+
+		public byte[] ImageData { get; set; }
+
+		public string ImageMimeType { get; set; }
 	}
 }
