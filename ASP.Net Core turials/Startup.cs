@@ -64,7 +64,7 @@ namespace ASP.Net_Core_turials
             {
 				routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Records}/{action=List}/{id?}");
             });
 
 			//DbInitializer.Seed(app);

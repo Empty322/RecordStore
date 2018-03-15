@@ -19,7 +19,7 @@
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <a href="~/#" class="navbar-brand">
             <img src="~/img/brand.svg" height="40" />
-            Store
+            Record Store
         </a>
         <button class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse">
             <span class="navbar-toggler-icon"></span>
@@ -27,14 +27,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                    <a class="nav-link" asp-controller="Records" asp-action="List">Records</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button">Account</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" asp-controller="Account" asp-action="Index">Index</a>
-                        <a class="dropdown-item" asp-controller="Account" asp-action="Private">Privare page</a>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Artists</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" asp-controller="About" asp-action="Index">About</a>
@@ -43,11 +39,15 @@
         </div>
     </nav>
     <div class="container">
-        <div class="row justify-content-between">
-            <div class="col col-sm-3 side-menu">
-                @Html.Partial("SideMenu")
+        <div class="row">
+            <div class="col-12 col-md-3 mb-4 side-menu">
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="#">Категория 1</a></li>
+                    <li class="list-group-item"><a href="#">Категория 2</a></li>
+                    <li class="list-group-item"><a href="#">Категория 3</a></li>
+                </ul>
             </div>
-            <div class="col col-sm-9">
+            <div class="col-12 col-md-9 main-content">
                 @RenderBody()
             </div>
         </div>

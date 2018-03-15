@@ -1,7 +1,27 @@
 ﻿.container {
-    margin-top: 40px
+    margin-top: 3rem;
 }
 
 body {
     background-color: lightgray;
+}
+
+.card {
+    margin-bottom: 1rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.side-menu > .list-group {
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.record {
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    padding : 2rem;
+    background-color: white;
+}
+
+.navbar {
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
 }

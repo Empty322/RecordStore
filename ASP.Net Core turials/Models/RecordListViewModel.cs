@@ -2,10 +2,10 @@
 
 namespace ASP.Net_Core_turials.Models
 {
-	public class RecordViewModel
+	public class RecordListViewModel
 	{
 		public Record Record { get; set; }
 
-		public Artist Artist { get; set; }
+		public string ArtistName { get; set; }
 	}
 }
