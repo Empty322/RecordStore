@@ -4,6 +4,7 @@ using Data.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +34,7 @@ namespace ASP.Net_Core_turials
 
 			services.Configure<IdentityOptions>(options =>
 			{
-				options.Password.RequiredLength = 6;
+				options.Password.RequiredLength = 5;
 				options.Password.RequireDigit = false;
 				options.Password.RequireUppercase = false;
 				options.Password.RequireNonAlphanumeric = false;
@@ -43,7 +44,7 @@ namespace ASP.Net_Core_turials
 		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public async void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
 			
             if (env.IsDevelopment())
@@ -57,6 +58,14 @@ namespace ASP.Net_Core_turials
             }
 
 			app.UseAuthentication();
+
+			ApplicationUser applicationUser = new ApplicationUser { UserName = Configuration["Admin:Login"] };
+			var result = await userManager.CreateAsync(applicationUser, Configuration["Admin:Password"]);
+			if (result.Succeeded)
+			{
+				await roleManager.CreateAsync(new IdentityRole("Admin"));
+				await userManager.AddToRoleAsync(applicationUser, "Admin");
+			}
 
 			app.UseStaticFiles();
 
