@@ -1,6 +1,4 @@
-﻿import alert from "../lib/bootstrap/js/src/alert";
-
-function GetCountries() {
+﻿function GetCountries() {
     var port = window.location.port ? ":" + window.location.port : "";
     var url = window.location.protocol + "//" + window.location.hostname + port + "/api/GetCountries/"
     $.get(url, function (data) {
