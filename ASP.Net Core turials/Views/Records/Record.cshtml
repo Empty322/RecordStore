@@ -1,32 +1,31 @@
-﻿@using ASP.Net_Core_turials.Models
-@model RecordViewModel
+﻿@model Data.Entities.Record
 @{
     ViewData["Title"] = "Record";
 }
 <div class="record">
-    <h2>@Model.Record.Title</h2>
+    <h2>@Model.Title</h2>
     <div class="row">
         <div class="col-12 col-sm-auto">
-            @if(Url.Action("GetImage", "Home", new { id = Model.Record.RecordId }) == null)
+            @if(Model.ImageData != null)
             {
-                <img class="img-thumbnail" style="height:auto; width:auto" src="@Url.Action("GetImage", "Home", new { id = Model.Record.RecordId })" />
+                <img class="img-thumbnail" style="height:13rem" src="@Url.Action("GetImage", "Records", new { id = Model.RecordId })" />
             }
             else
             {
-                <img class="img-thumbnail" style="height:inherit; width:inherit" src="~/img/placeholder.jpg" />
+                <img class="img-thumbnail" style="height:13rem" src="~/img/placeholder.jpg" />
             }
         </div>
         <div class="col-12 col-sm-auto">
             <h4>Artist: <a href="#">@Model.Artist.Name</a></h4>
             <h4>Country: @Model.Artist.CountryName</h4>
-            <h4>Amount: @Model.Record.Amount</h4>
-            <h4>Type: @Model.Record.Type</h4>
+            <h4>Amount: @Model.Amount</h4>
+            <h4>Type: @Model.Type</h4>
             <br />
             <a class="btn btn-primary" href="#">Buy</a>
         </div>
     </div>
     <br />
     <div class="blog-description">
-        <p>@Model.Record.Description</p>
+        <p>@Model.Description</p>
     </div>
 </div>

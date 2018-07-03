@@ -1,6 +1,138 @@
-﻿@{
+﻿@model AdminViewModel
+@{
     ViewData["Title"] = "Index";
 }
 
-<h2>Admin Page</h2>
+<div>
+    <h2>Countries</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th width="100"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var Country in Model.Countries)
+            {
+            <tr>
+                <td>@Country.CountryName</td>
+                <td>
+                    <a class="btn btn-danger"
+                            asp-controller="Admin"
+                            asp-action="DeleteCountry"
+                            asp-route-countryName="@Country.CountryName">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+            }
+            <tr>
+                <td colspan="2">
+                    <a class="btn btn-primary"
+                            asp-controller="Admin"
+                            asp-action="NewCountry">
+                        New
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Artists</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Country</th>
+                <th width="100"></th>
+                <th width="100"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var Artist in Model.Artists)
+            {
+            <tr>
+                <td>@Artist.Name</td>
+                <td>@Artist.CountryName</td>
+                <td>
+                    <a class="btn btn-info"
+                            asp-controller="Admin"
+                            asp-action="EditArtist"
+                            asp-route-artistId="@Artist.ArtistId">
+                        Edit
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-danger"
+                            asp-controller="Admin"
+                            asp-action="DeleteArtist"
+                            asp-route-artistId="@Artist.ArtistId">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+            }
+            <tr>
+                <td colspan="4">
+                    <a class="btn btn-primary"
+                            asp-controller="Admin"
+                            asp-action="NewArtist">
+                        New
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Records</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Amount</th>
+                <th>Type</th>
+                <th width="100"></th>
+                <th width="100"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var Record in Model.Records)
+            {
+            <tr>
+                <td>@Record.Title</td>
+                <td>@Record.Artist.Name</td>
+                <td>@Record.Amount</td>
+                <td>@Record.Type</td>
+                <td>
+                    <a class="btn btn-info"
+                            asp-controller="Admin"
+                            asp-action="EditRecord"
+                            asp-route-recordId="@Record.RecordId">
+                        Edit
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-danger"
+                            asp-controller="Admin"
+                            asp-action="DeleteRecord"
+                            asp-route-recordId="@Record.RecordId">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+            }
+            <tr>
+                <td colspan="7">
+                    <a class="btn btn-primary"
+                            asp-controller="Admin"
+                            asp-action="NewRecord">
+                        New
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 

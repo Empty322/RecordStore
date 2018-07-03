@@ -39,12 +39,12 @@ namespace Data.Repository
 			return db.Set<T>().Where(predicate);
 		}
 
-		public IEnumerable<T> GetAll()
+		public virtual IEnumerable<T> GetAll()
 		{
 			return db.Set<T>();
 		}
 
-		public T GetById(int id)
+		public virtual T GetById(int id)
 		{
 			return db.Set<T>().Find(id);
 		}

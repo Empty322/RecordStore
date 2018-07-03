@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Entities
 {
@@ -15,8 +16,8 @@ namespace Data.Entities
 		[Required]
 		public string Description { get; set; }
 
-		[Required]
 		public Country Country { get; set; }
+
 		[Required]
 		public string CountryName { get; set; }
 

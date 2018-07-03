@@ -1,4 +1,5 @@
-﻿using Data;
+﻿using System;
+using Data;
 using Data.Interfaces;
 using Data.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -76,7 +77,7 @@ namespace ASP.Net_Core_turials
                     template: "{controller=Records}/{action=List}/{id?}");
             });
 
-			//DbInitializer.Seed(app);
-        }
+			DbInitializer.Seed(app);
+		}
     }
 }

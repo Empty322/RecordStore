@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Entities
 {
@@ -21,8 +22,8 @@ namespace Data.Entities
 		[MaxLength(15)]
 		public string Type { get; set; }
 
-		[Required]
 		public Artist Artist { get; set; }
+
 		[Required]
 		public int ArtistId { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using ASP.Net_Core_turials.Models;
 using Data.Entities;
 using Data.Interfaces;
@@ -20,12 +21,7 @@ namespace ASP.Net_Core_turials.Controllers
 		public IActionResult List()
 		{
 			IEnumerable<Record> records = recordRepository.GetAll();
-			List<RecordListViewModel> recordsVM = new List<RecordListViewModel>();
-			foreach(Record record in records)
-			{
-				recordsVM.Add(new RecordListViewModel { Record = record, ArtistName = artistRepository.GetById(record.ArtistId).Name});
-			}
-            return View(recordsVM);
+            return View(records);
         }
 
 		[Route("Record/{id}")]
@@ -33,10 +29,7 @@ namespace ASP.Net_Core_turials.Controllers
 		{
 			Record record = recordRepository.GetById(id);
 			if(record != null)
-			{
-				Artist artist = artistRepository.GetById(record.ArtistId);
-				return View(new RecordViewModel { Record = record, Artist = artist });
-			}
+				return View(record);
 			else
 				return RedirectToAction(nameof(Error));
 		}
@@ -44,7 +37,7 @@ namespace ASP.Net_Core_turials.Controllers
 		public FileContentResult GetImage(int id)
 		{
 			Record record = recordRepository.GetById(id);
-			if(record != null)
+			if(record.ImageData != null && record.ImageMimeType != null)
 				return new FileContentResult(record.ImageData, record.ImageMimeType);
 			else
 				return null;

@@ -1,4 +1,5 @@
-﻿using Data.Entities;
+﻿using System.Linq;
+using Data.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,6 +12,9 @@ namespace Data
 			using(var serviceScoupe = app.ApplicationServices.CreateScope())
 			{
 				var context = serviceScoupe.ServiceProvider.GetService<ApplicationDbContext>();
+
+				if(context.Countries.Any())
+					return;
 
 				Country Sweden = new Country { CountryName = "Sweden" };
 				Country Germany = new Country { CountryName = "Germany" };

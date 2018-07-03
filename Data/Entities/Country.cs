@@ -8,6 +8,7 @@ namespace Data.Entities
     public class Country
     {
 		[Key]
+		[Required]
 		public string CountryName { get; set; }
 
 		public List<Artist> Artists { get; set; }
