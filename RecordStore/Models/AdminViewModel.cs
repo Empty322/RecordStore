@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Data.Entities;
 
-namespace ASP.Net_Core_turials.Models
+namespace RecordStore.Models
 {
     public class AdminViewModel
     {

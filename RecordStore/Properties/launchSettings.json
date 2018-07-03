@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "ASP.Net_Core_turials": {
+    "RecordStore": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

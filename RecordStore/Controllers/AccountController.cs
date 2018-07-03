@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
-using ASP.Net_Core_turials.Models;
+using RecordStore.Models;
 using Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ASP.Net_Core_turials.Controllers
+namespace RecordStore.Controllers
 {
 	public class AccountController : Controller
 	{

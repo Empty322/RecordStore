@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using ASP.Net_Core_turials.Models;
+using RecordStore.Models;
 using Data.Entities;
 using Data.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace ASP.Net_Core_turials.Controllers
+namespace RecordStore.Controllers
 {
 	[Authorize(Roles = "Admin")]
 	public class AdminController : Controller

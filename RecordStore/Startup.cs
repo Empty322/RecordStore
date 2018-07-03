@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ASP.Net_Core_turials
+namespace RecordStore
 {
 	public class Startup
     {
