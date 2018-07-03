@@ -18,12 +18,9 @@
             <tr>
                 <td>@Country.CountryName</td>
                 <td>
-                    <a class="btn btn-danger"
-                            asp-controller="Admin"
-                            asp-action="DeleteCountry"
-                            asp-route-countryName="@Country.CountryName">
+                    <button country-name="@Country.CountryName" class="btn btn-danger delete-country">
                         Delete
-                    </a>
+                    </button>
                 </td>
             </tr>
             }
@@ -64,12 +61,9 @@
                     </a>
                 </td>
                 <td>
-                    <a class="btn btn-danger"
-                            asp-controller="Admin"
-                            asp-action="DeleteArtist"
-                            asp-route-artistId="@Artist.ArtistId">
+                    <button artist-id="@Artist.ArtistId" class="btn btn-danger delete-artist">
                         Delete
-                    </a>
+                    </button>
                 </td>
             </tr>
             }
@@ -114,12 +108,9 @@
                     </a>
                 </td>
                 <td>
-                    <a class="btn btn-danger"
-                            asp-controller="Admin"
-                            asp-action="DeleteRecord"
-                            asp-route-recordId="@Record.RecordId">
+                    <button record-id="@Record.RecordId" class="btn btn-danger delete-record">
                         Delete
-                    </a>
+                    </button>
                 </td>
             </tr>
             }
@@ -136,3 +127,8 @@
     </table>
 </div>
 
+@section scripts{ 
+    <script>
+        $(document).ready(SetDeleteButtons())
+    </script>
+}

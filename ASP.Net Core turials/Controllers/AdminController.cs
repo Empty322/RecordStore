@@ -55,13 +55,6 @@ namespace ASP.Net_Core_turials.Controllers
 			return View(country);
 		}
 
-		public IActionResult DeleteCountry(string countryName)
-		{
-			Country country = countryRepository.GetAll().FirstOrDefault(c => c.CountryName == countryName);
-			countryRepository.Delete(country);
-			return RedirectToAction(nameof(Index));
-		}
-
 		#endregion
 
 		#region Artist actions
@@ -89,13 +82,6 @@ namespace ASP.Net_Core_turials.Controllers
 				return RedirectToAction(nameof(Index));
 			}
 			return View(artist);
-		}
-
-		public IActionResult DeleteArtist(int artistId)
-		{
-			Artist artist = artistRepository.GetById(artistId);
-			artistRepository.Delete(artist);
-			return RedirectToAction(nameof(Index));
 		}
 
 		#endregion
@@ -127,15 +113,6 @@ namespace ASP.Net_Core_turials.Controllers
 			return View(record);
 		}
 
-		public IActionResult DeleteRecord(int recordId)
-		{
-			Record record = recordRepository.GetById(recordId);
-			recordRepository.Delete(record);
-			return RedirectToAction(nameof(Index));
-		}
-
-
-
 		#endregion
 
 		#region API methods
@@ -152,6 +129,30 @@ namespace ASP.Net_Core_turials.Controllers
 		public IActionResult GetArtists()
 		{
 			return Ok(JsonConvert.SerializeObject(artistRepository.GetAll()));
+		}
+
+		[HttpDelete("/api/DeleteCountry/{countryName}")]
+		public IActionResult DeleteCountry(string countryName)
+		{
+			Country country = countryRepository.GetAll().FirstOrDefault(c => c.CountryName == countryName);
+			countryRepository.Delete(country);
+			return Ok("success");
+		}
+
+		[HttpDelete("/api/DeleteArtist/{artistId}")]
+		public IActionResult DeleteArtist(int artistId)
+		{
+			Artist artist = artistRepository.GetById(artistId);
+			artistRepository.Delete(artist);
+			return Ok("success");
+		}
+
+		[HttpDelete("/api/DeleteRecord/{recordId}")]
+		public IActionResult DeleteRecord(int recordId)
+		{
+			Record record = recordRepository.GetById(recordId);
+			recordRepository.Delete(record);
+			return Ok("success");
 		}
 
 		#endregion
