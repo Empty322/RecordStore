@@ -13,12 +13,12 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(var Country in Model.Countries)
+            @foreach(var country in Model.Countries)
             {
             <tr>
-                <td>@Country.CountryName</td>
+                <td>@country.CountryName</td>
                 <td>
-                    <button country-name="@Country.CountryName" class="btn btn-danger delete-country">
+                    <button country-name="@country.CountryName" class="btn btn-danger delete-country">
                         Delete
                     </button>
                 </td>
@@ -47,21 +47,21 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(var Artist in Model.Artists)
+            @foreach(var artist in Model.Artists)
             {
-            <tr>
-                <td>@Artist.Name</td>
-                <td>@Artist.CountryName</td>
+            <tr id="@artist.ArtistId" countryName="@artist.CountryName" class="artist-row">
+                <td>@artist.Name</td>
+                <td>@artist.CountryName</td>
                 <td>
                     <a class="btn btn-info"
                             asp-controller="Admin"
                             asp-action="EditArtist"
-                            asp-route-artistId="@Artist.ArtistId">
+                            asp-route-artistId="@artist.ArtistId">
                         Edit
                     </a>
                 </td>
                 <td>
-                    <button artist-id="@Artist.ArtistId" class="btn btn-danger delete-artist">
+                    <button artist-id="@artist.ArtistId" class="btn btn-danger delete-artist">
                         Delete
                     </button>
                 </td>
@@ -92,23 +92,23 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(var Record in Model.Records)
+            @foreach(var record in Model.Records)
             {
-            <tr>
-                <td>@Record.Title</td>
-                <td>@Record.Artist.Name</td>
-                <td>@Record.Amount</td>
-                <td>@Record.Type</td>
+            <tr id="@record.RecordId" artistId="@record.ArtistId" class="record-row">
+                <td>@record.Title</td>
+                <td>@record.Artist.Name</td>
+                <td>@record.Amount</td>
+                <td>@record.Type</td>
                 <td>
                     <a class="btn btn-info"
                             asp-controller="Admin"
                             asp-action="EditRecord"
-                            asp-route-recordId="@Record.RecordId">
+                            asp-route-recordId="@record.RecordId">
                         Edit
                     </a>
                 </td>
                 <td>
-                    <button record-id="@Record.RecordId" class="btn btn-danger delete-record">
+                    <button record-id="@record.RecordId" class="btn btn-danger delete-record">
                         Delete
                     </button>
                 </td>

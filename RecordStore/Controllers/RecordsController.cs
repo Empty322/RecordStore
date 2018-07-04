@@ -34,11 +34,10 @@ namespace RecordStore.Controllers
 
 		public FileContentResult GetImage(int id)
 		{
-			Record record = recordRepository.GetById(id);
-			if(record.ImageData != null && record.ImageMimeType != null)
-				return new FileContentResult(record.ImageData, record.ImageMimeType);
+			if(recordRepository.GetImageById(id, out byte[] bytes, out string contentType))
+				return new FileContentResult(bytes, contentType);
 			else
-				return null;
+				return new FileContentResult(null, "");
 		}
 
         public IActionResult Error()

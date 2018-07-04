@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Artist>
+@{
+    ViewData["Title"] = "Artists";
+}
+
+<div class="row">
+    @foreach(Artist a in Model)
+    {
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card">
+                @if(a.ImageData != null)
+                {
+                    <img class="img-thumbnail" style="height:10rem" src="@Url.Action("GetImage", "Artists", new { id = a.ArtistId })" />
+                }
+                else
+                {
+                    <img class="img-thumbnail" style="height:10rem" src="~/img/placeholder.jpg" />
+                }
+                <div class="card-body">
+                    <h6 class="card-title">@a.Name</h6>
+                    <p class="card-text">@a.CountryName</p>
+                    <a class="btn-sm btn-primary" asp-controller="Artists" asp-action="Artist" asp-route-id="@a.ArtistId">More info</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace RecordStore.Controllers
 {
@@ -77,6 +78,15 @@ namespace RecordStore.Controllers
 						artist.ImageData = reader.ReadBytes((int)image.Length);
 					}
 				}
+				else
+				{
+					using (BinaryReader reader = new BinaryReader(new FileStream("wwwroot/img/placeholder.jpg", FileMode.Open)))
+					{
+						FileInfo info = new FileInfo("wwwroot/img/placeholder.jpg");
+						artist.ImageData = reader.ReadBytes((int)info.Length);
+						artist.ImageMimeType = "image/jpeg";
+					}
+				}
 				artistRepository.Create(artist);
 				return RedirectToAction(nameof(Index));
 			}
@@ -106,6 +116,15 @@ namespace RecordStore.Controllers
 						record.ImageData = reader.ReadBytes((int)image.Length);
 					}
 				}
+				else
+				{
+					using(BinaryReader reader = new BinaryReader(new FileStream("wwwroot/img/placeholder.jpg", FileMode.Open)))
+					{
+						FileInfo info = new FileInfo("wwwroot/img/placeholder.jpg");
+						record.ImageData = reader.ReadBytes((int)info.Length);
+						record.ImageMimeType = "image/jpeg";
+					}
+				}
 				recordRepository.Create(record);
 				return RedirectToAction(nameof(Index));
 			}
@@ -120,7 +139,7 @@ namespace RecordStore.Controllers
 		[HttpGet("/api/GetCountries")]
 		public IActionResult GetCountries()
 		{
-			return Ok(JsonConvert.SerializeObject(countryRepository.GetAll()));
+			return Ok(JsonConvert.SerializeObject(countryRepository.GetAll().Select(c => c.CountryName)));
 		}
 
 		[Produces("application/json")]

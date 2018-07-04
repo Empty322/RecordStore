@@ -4,7 +4,7 @@
     $.get(url, function (data) {
         var countries = JSON.parse(data);
         for (var i = 0; i < countries.length; i++) {
-            $("#countries-combo").append('<option value="' + countries[i].CountryName + '">' + countries[i].CountryName + '</option>');
+            $("#countries-combo").append('<option value="' + countries[i] + '">' + countries[i] + '</option>');
         }
     })
 }
@@ -28,8 +28,16 @@ function SetDeleteButtons() {
             url: "/api/DeleteCountry/" + countryName,
             type: 'DELETE',
             success: function (result) {
-                if (result === "success")
+                if (result === "success") {
+                    var artists = $('[countryName="' + countryName + '"]');
+                    for (var i = 0; i < artists.length; i++) {
+                        var records = $('[artistId="' + artists[i].id + '"]');
+                        for (var i = 0; i < records.length; i++)
+                            records.remove();
+                        artists.remove();
+                    }
                     tr.remove();
+                }
             }
         });
     })
@@ -41,8 +49,12 @@ function SetDeleteButtons() {
             url: "/api/DeleteArtist/" + artistId,
             type: 'DELETE',
             success: function (result) {
-                if (result === "success")
+                if (result === "success") {
+                    var records = $('[artistId="' + artistId + '"]');
+                    for (var i = 0; i < records.length; i++)
+                        records.remove();
                     tr.remove();
+                }
             }
         });
     })

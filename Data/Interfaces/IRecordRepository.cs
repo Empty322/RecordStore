@@ -5,7 +5,7 @@ using Data.Entities;
 
 namespace Data.Interfaces
 {
-    public interface IRecordRepository : IRepository<Record>
+    public interface IRecordRepository : IRepository<Record>, IHasImage
     {
 		IEnumerable<Record> GetRecordsByType(string type);
 	}
