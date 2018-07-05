@@ -1,0 +1,48 @@
+﻿@model Artist
+@{
+    ViewData["Title"] = "Artist";
+}
+<div class="content mb-2">
+    <h2>@Model.Name</h2>
+    <div class="row">
+        <div class="col-12 col-sm-8">
+            @if(Model.ImageData != null)
+            {
+                <img class="img-thumbnail" style="width:100%" src="@Url.Action("GetImage", "Artists", new { id = Model.ArtistId })" />
+            }
+            else
+            {
+                <img class="img-thumbnail" style="width:100%" src="~/img/placeholder.jpg" />
+            }
+        </div>
+        <div class="col-12 col-sm-4">
+            <h4>Artist: @Model.Name</h4>
+            <h4>Country: @Model.CountryName</h4>
+        </div>
+    </div>
+    <br />
+    <div class="blog-description">
+        <p>@Model.Description</p>
+    </div>
+</div>
+
+<div class="card-columns">
+    @foreach(Record r in Model.Records)
+    {
+        <div class="card">
+            @if(r.ImageData != null)
+            {
+                <img class="card-img-top" style="width:100%" src="@Url.Action("GetImage", "Records", new { id = r.RecordId })" />
+            }
+            else
+            {
+                <img class="card-img-top" style="width:100%" src="~/img/placeholder.jpg" />
+            }
+            <div class="card-body">
+                <h6 class="card-title">@r.Title</h6>
+                <p class="card-text">@r.Artist.Name</p>
+                <a class="card-link" asp-controller="Records" asp-action="Record" asp-route-id="@r.RecordId">More info</a>
+            </div>
+        </div>
+    }
+</div>

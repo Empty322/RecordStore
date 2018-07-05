@@ -3,25 +3,56 @@
 }
 
 body {
-    background-color: lightgray;
+    background-color: #909090;
 }
 
 .card {
     margin-bottom: 1rem;
+}
+
+.side-menu > .list-group, .content, #carouselExampleIndicators {
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
-.side-menu > .list-group {
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-
-.record {
+.content {
     border-radius: 3px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    padding : 2rem;
+    padding: 2rem;
     background-color: white;
 }
 
 .navbar {
     box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+#vinyl-img {
+    z-index: -1;
+    position: relative;
+}
+
+#gradient {
+    width: 100%;    
+    height: 100%;
+    background: linear-gradient(to top, #909090, transparent);
+}
+
+.navbar > .container {
+    margin-top: 0px;
+}
+
+@media screen and (min-width: 0px) {
+    .card-columns {
+        column-count: 1;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .card-columns {
+        column-count: 3;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .card-columns {
+        column-count: 4;
+    }
 }

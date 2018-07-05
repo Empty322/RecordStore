@@ -3,24 +3,22 @@
     ViewData["Title"] = "Home";
 }
 
-<div class="row">
+<div class="card-columns">
     @foreach(Record r in Model)
     {
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card">
-                @if(r.ImageData != null)
-                {
-                    <img class="img-thumbnail" style="height:10rem" src="@Url.Action("GetImage", "Records", new { id = r.RecordId })" />
-                }
-                else
-                {
-                    <img class="img-thumbnail" style="height:10rem" src="~/img/placeholder.jpg" />
-                }
-                <div class="card-body">
-                    <h6 class="card-title">@r.Title</h6>
-                    <p class="card-text">@r.Artist.Name</p>
-                    <a class="btn-sm btn-primary" asp-controller="Records" asp-action="Record" asp-route-id="@r.RecordId">More info</a>
-                </div>
+        <div class="card">
+            @if(r.ImageData != null)
+            {
+                <img class="card-img-top" style="width:100%" src="@Url.Action("GetImage", "Records", new { id = r.RecordId })" />
+            }
+            else
+            {
+                <img class="card-img-top" style="width:100%" src="~/img/placeholder.jpg" />
+            }
+            <div class="card-body">
+                <h6 class="card-title">@r.Title</h6>
+                <p class="card-text">@r.Artist.Name</p>
+                <a class="card-link" asp-controller="Records" asp-action="Record" asp-route-id="@r.RecordId">More info</a>
             </div>
         </div>
     }

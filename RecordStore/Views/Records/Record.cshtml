@@ -2,21 +2,21 @@
 @{
     ViewData["Title"] = "Record";
 }
-<div class="record">
+<div class="content">
     <h2>@Model.Title</h2>
     <div class="row">
-        <div class="col-12 col-sm-auto">
+        <div class="col-12 col-sm-8">
             @if(Model.ImageData != null)
             {
-                <img class="img-thumbnail" style="height:13rem" src="@Url.Action("GetImage", "Records", new { id = Model.RecordId })" />
+                <img class="img-thumbnail" style="width:100%" src="@Url.Action("GetImage", "Records", new { id = Model.RecordId })" />
             }
             else
             {
-                <img class="img-thumbnail" style="height:13rem" src="~/img/placeholder.jpg" />
+                <img class="img-thumbnail" style="width:100%" src="~/img/placeholder.jpg" />
             }
         </div>
-        <div class="col-12 col-sm-auto">
-            <h4>Artist: <a href="#">@Model.Artist.Name</a></h4>
+        <div class="col-12 col-sm-4">
+            <h4>Artist: <a asp-controller="Artists" asp-action="Artist" asp-route-id="@Model.ArtistId">@Model.Artist.Name</a></h4>
             <h4>Country: @Model.Artist.CountryName</h4>
             <h4>Amount: @Model.Amount</h4>
             <h4>Type: @Model.Type</h4>

@@ -72,3 +72,7 @@ function SetDeleteButtons() {
         });
     })
 }
+
+$(".carousel").carousel({
+    interval: 3000
+})

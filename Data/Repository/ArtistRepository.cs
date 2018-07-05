@@ -2,6 +2,8 @@
 using System.Linq;
 using Data.Entities;
 using Data.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Data.Repository
 {
@@ -10,6 +12,11 @@ namespace Data.Repository
 		public ArtistRepository(ApplicationDbContext db) : base(db)
 		{
 
+		}
+
+		public override Artist GetById(int id)
+		{
+			return db.Artists.Include(a => a.Records).FirstOrDefault(a => a.ArtistId == id);
 		}
 
 		public IEnumerable<Artist> GetByCountry(Country country)
