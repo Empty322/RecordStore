@@ -8,11 +8,11 @@
         <div class="col-12 col-sm-8">
             @if(Model.ImageData != null)
             {
-                <img class="img-thumbnail" style="width:100%" src="@Url.Action("GetImage", "Artists", new { id = Model.ArtistId })" />
+                <img class="img-thumbnail image" src="@Url.Action("GetImage", "Artists", new { id = Model.ArtistId })" />
             }
             else
             {
-                <img class="img-thumbnail" style="width:100%" src="~/img/placeholder.jpg" />
+                <img class="img-thumbnail image" src="~/img/placeholder.jpg" />
             }
         </div>
         <div class="col-12 col-sm-4">

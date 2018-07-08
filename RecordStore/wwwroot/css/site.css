@@ -10,6 +10,10 @@ body {
     margin-bottom: 1rem;
 }
 
+.image {
+    width: 100%;
+}
+
 .side-menu > .list-group, .content, #carouselExampleIndicators {
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }

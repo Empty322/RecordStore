@@ -9,11 +9,11 @@
         <div class="card">
             @if(a.ImageData != null)
             {
-                <img class="card-img-top" style="width:100%" src="@Url.Action("GetImage", "Artists", new { id = a.ArtistId })" />
+                <img class="card-img-top image" src="@Url.Action("GetImage", "Artists", new { id = a.ArtistId })" />
             }
             else
             {
-                <img class="card-img-top" style="width:100%" src="~/img/placeholder.jpg" />
+                <img class="card-img-top image" style="width:100%" src="~/img/placeholder.jpg" />
             }
             <div class="card-body">
                 <h6 class="card-title">@a.Name</h6>

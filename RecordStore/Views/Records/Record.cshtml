@@ -8,11 +8,11 @@
         <div class="col-12 col-sm-8">
             @if(Model.ImageData != null)
             {
-                <img class="img-thumbnail" style="width:100%" src="@Url.Action("GetImage", "Records", new { id = Model.RecordId })" />
+                <img class="img-thumbnail image" src="@Url.Action("GetImage", "Records", new { id = Model.RecordId })" />
             }
             else
             {
-                <img class="img-thumbnail" style="width:100%" src="~/img/placeholder.jpg" />
+                <img class="img-thumbnail image" src="~/img/placeholder.jpg" />
             }
         </div>
         <div class="col-12 col-sm-4">
@@ -21,7 +21,7 @@
             <h4>Amount: @Model.Amount</h4>
             <h4>Type: @Model.Type</h4>
             <br />
-            <a class="btn btn-primary" href="#">Buy</a>
+            <button class="btn btn-primary" id="add-btn">Add to cart</button>
         </div>
     </div>
     <br />
@@ -29,3 +29,9 @@
         <p>@Model.Description</p>
     </div>
 </div>
+
+@section scripts{ 
+    <script>
+        $(document).ready(SetAddBtn(@Model.RecordId))
+    </script>
+}

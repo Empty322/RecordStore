@@ -22,6 +22,8 @@ namespace RecordStore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+			services.AddDistributedMemoryCache();
+			services.AddSession();
 			services.AddDbContext<ApplicationDbContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 			services.AddTransient<IRecordRepository, RecordRepository>();
 			services.AddTransient<IArtistRepository, ArtistRepository>();
@@ -56,6 +58,7 @@ namespace RecordStore
                 app.UseExceptionHandler("/Home/Error");
             }
 
+			app.UseSession();
 			app.UseAuthentication();
 
 			ApplicationUser applicationUser = new ApplicationUser { UserName = Configuration["Admin:Login"] };

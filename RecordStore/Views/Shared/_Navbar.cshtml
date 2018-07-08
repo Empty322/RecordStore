@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     string action = ViewContext.RouteData.Values["Action"].ToString();
     string controller = ViewContext.RouteData.Values["Controller"].ToString();
 }
@@ -24,8 +24,7 @@
                     <a class="nav-link @(controller == "About" && action == "Index" ? "active" : "")" asp-controller="About" asp-action="Index">About</a>
                 </li>
             </ul>
-            <button class="btn btn-dark">Cart</button>
+            <a class="btn btn-dark" asp-controller="Cart" asp-action="Index">Cart</a>
         </div>
     </div>
-    
 </nav>

@@ -76,3 +76,16 @@ function SetDeleteButtons() {
 $(".carousel").carousel({
     interval: 3000
 })
+
+function SetAddBtn(id) {
+    $("#add-btn").click(function () {
+        $.ajax({
+            url: "/api/AddToCart/" + id,
+            type: 'POST',
+            success: function (result) {
+                if (result === "success")
+                    alert("Product added to cart.");
+            }
+        })
+    })
+}
