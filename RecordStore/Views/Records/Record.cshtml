@@ -21,7 +21,7 @@
             <h4>Amount: @Model.Amount</h4>
             <h4>Type: @Model.Type</h4>
             <br />
-            <button class="btn btn-primary" id="add-btn">Add to cart</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add to cart</button>
         </div>
     </div>
     <br />
@@ -30,8 +30,31 @@
     </div>
 </div>
 
-@section scripts{ 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form asp-controller="Cart" asp-action="Add" enctype="application/x-www-form-urlencoded">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">How much do you want to put in the shopping cart?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body justify-content-center">
+                    <input type="hidden" name="id" value="@Model.RecordId" />
+                    <input type="number" name="count" value="1" id="items-count" class="btn btn-secondary" /> items.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" value="Add" class="btn btn-primary" id="add-btn"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@*@section scripts{ 
     <script>
         $(document).ready(SetAddBtn(@Model.RecordId))
     </script>
-}
+}*@

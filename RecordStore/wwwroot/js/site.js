@@ -73,19 +73,35 @@ function SetDeleteButtons() {
     })
 }
 
+function SetDeleteItemButtons() {
+    $(".delete-item").click(function () {
+        var recordId = $(this).attr("id");
+        var tr = $(this).parent().parent();
+        $.ajax({
+            url: "/api/DeleteItem/" + recordId,
+            type: 'DELETE',
+            success: function (result) {
+                if (result === "success")
+                    tr.remove();
+            }
+        });
+    })
+}
+
 $(".carousel").carousel({
     interval: 3000
 })
 
-function SetAddBtn(id) {
-    $("#add-btn").click(function () {
-        $.ajax({
-            url: "/api/AddToCart/" + id,
-            type: 'POST',
-            success: function (result) {
-                if (result === "success")
-                    alert("Product added to cart.");
-            }
-        })
-    })
-}
+//function SetAddBtn(id) {
+//    $("#add-btn").click(function () {
+//        var count = $("#items-count");
+//        $.ajax({
+//            url: "/api/AddToCart/" + id + "/" + count,
+//            type: 'POST',
+//            success: function (data) {
+//                if (data.result === "success")
+//                    alert("Product added to cart.");
+//            }
+//        })
+//    })
+//}

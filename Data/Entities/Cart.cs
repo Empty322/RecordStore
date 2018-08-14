@@ -16,7 +16,11 @@ namespace Data.Entities
 
 		public void Add(Record record, int amount)
 		{
-			Products.Add(new CartLine { Record = record, Amount = amount });
+			CartLine findedLine = Products.FirstOrDefault(c => c.Record.RecordId == record.RecordId);
+			if(findedLine == null)
+				Products.Add(new CartLine { Record = record, Amount = amount });
+			else
+				findedLine.Amount += amount;
 		}
 
 		public void Delete(int id)
@@ -28,7 +32,15 @@ namespace Data.Entities
 		{
 			Products.Clear();
 		}
-    }
+
+		public override string ToString()
+		{
+			StringBuilder result = new StringBuilder();
+			foreach(CartLine line in Products)
+				result.Append(line.Record.Artist.Name + " - " + line.Record.Title + " x " + line.Amount + "\n");
+			return result.ToString();
+		}
+	}
 
 	public class CartLine
 	{

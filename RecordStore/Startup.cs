@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TicTacToe.Services;
 
 namespace RecordStore
 {
@@ -28,6 +29,9 @@ namespace RecordStore
 			services.AddTransient<IRecordRepository, RecordRepository>();
 			services.AddTransient<IArtistRepository, ArtistRepository>();
 			services.AddTransient<ICountryRepository, CountryRepository>();
+
+			services.Configure<EmailServiceOptions>(Configuration.GetSection("Email"));
+			services.AddSingleton<IEmailService, EmailService>();
 
 			services.AddIdentity<ApplicationUser, IdentityRole>()
 				.AddEntityFrameworkStores<ApplicationDbContext>()
