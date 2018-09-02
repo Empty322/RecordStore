@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Data.Entities;
 using Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -16,11 +17,19 @@ namespace RecordStore.Controllers
 			this.artistRepository = artistRepository;
 		}
 
+
 		public IActionResult List()
 		{
 			IEnumerable<Record> records = recordRepository.GetAll();
             return View(records);
         }
+
+		[Route("Records/List/{genreId}")]
+		public IActionResult List(string genreId)
+		{
+			IEnumerable<Record> records = recordRepository.GetAll().Where(r => r.GenreId == genreId);
+			return View(records);
+		}
 
 		[Route("Record/{id}")]
 		public IActionResult Record(int id)

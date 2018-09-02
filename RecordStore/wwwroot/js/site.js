@@ -20,6 +20,28 @@ function GetArtists() {
     })
 }
 
+function GetGenresToSideMenu() {
+    var port = window.location.port ? ":" + window.location.port : "";
+    var url = window.location.protocol + "//" + window.location.hostname + port + "/api/GetGenres/";
+    $.get(url, function (data) {
+        var genres = JSON.parse(data);
+        for (var i = 0; i < genres.length; i++) {
+            $("#genres").append('<li class="list-group-item"><a href="/Records/List/' + genres[i].Id + '">' + genres[i].Id + '</a></li>');
+        }
+    })
+}
+
+function GetGenresToNewRecord() {
+    var port = window.location.port ? ":" + window.location.port : "";
+    var url = window.location.protocol + "//" + window.location.hostname + port + "/api/GetGenres/";
+    $.get(url, function (data) {
+        var genres = JSON.parse(data);
+        for (var i = 0; i < genres.length; i++) {
+            $("#genres-combo").append('<option value="' + genres[i].Id + '">' + genres[i].Id + '</option>');
+        }
+    })
+}
+
 function SetDeleteButtons() {
     $(".delete-country").click(function () {
         var countryName = $(this).attr("country-name");
@@ -32,12 +54,27 @@ function SetDeleteButtons() {
                     var artists = $('[countryName="' + countryName + '"]');
                     for (var i = 0; i < artists.length; i++) {
                         var records = $('[artistId="' + artists[i].id + '"]');
-                        for (var i = 0; i < records.length; i++)
-                            records.remove();
-                        artists.remove();
+                        records.remove();                        
                     }
+                    artists.remove();
                     tr.remove();
                 }
+            }
+        });
+    })
+
+    $(".delete-genre").click(function () {
+        var genreId = $(this).attr("genre-id");
+        var tr = $(this).parent().parent();
+        $.ajax({
+            url: "/api/DeleteGenre/" + genreId,
+            type: 'DELETE',
+            success: function (result) {
+                if (result === "success") {
+                    var records = $('[genreId="' + genreId + '"]');
+                    records.remove();
+                }
+                tr.remove();
             }
         });
     })
@@ -51,8 +88,7 @@ function SetDeleteButtons() {
             success: function (result) {
                 if (result === "success") {
                     var records = $('[artistId="' + artistId + '"]');
-                    for (var i = 0; i < records.length; i++)
-                        records.remove();
+                    records.remove();
                     tr.remove();
                 }
             }

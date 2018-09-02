@@ -15,6 +15,8 @@ namespace Data
 
 		public DbSet<Country> Countries { get; set; }
 
+		public DbSet<Genre> Genres { get; set; }
+
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
 		{
 			Database.EnsureCreated();
@@ -31,6 +33,8 @@ namespace Data
 
 			modelBuilder.Entity<Artist>().HasOne(a => a.Country).WithMany(c => c.Artists).HasForeignKey(a => a.CountryName);
 			modelBuilder.Entity<Record>().HasOne(r => r.Artist).WithMany(a => a.Records).HasForeignKey(r => r.ArtistId);
+			modelBuilder.Entity<Record>().HasOne(r => r.Genre).WithMany(g => g.Records).HasForeignKey(r => r.GenreId);
+
 			modelBuilder.Entity<Artist>().Property(a => a.ImageData).HasColumnType("MEDIUMBLOB");
 			modelBuilder.Entity<Record>().Property(r => r.ImageData).HasColumnType("MEDIUMBLOB");
 

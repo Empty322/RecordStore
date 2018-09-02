@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Entities
@@ -26,6 +27,11 @@ namespace Data.Entities
 
 		[Required]
 		public int ArtistId { get; set; }
+
+		public Genre Genre { get; set; }
+
+		[Required]
+		public string GenreId{ get; set; }
 
 		public byte[] ImageData { get; set; }
 

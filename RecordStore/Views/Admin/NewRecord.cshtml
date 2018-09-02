@@ -41,6 +41,11 @@
                     <span asp-validation-for="ArtistId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
+                    <label asp-for="GenreId" class="control-label"></label>
+                    <select id="genres-combo" asp-for="GenreId" class="form-control"></select>
+                    <span asp-validation-for="GenreId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
                     <input name="image" type="file" class="form-control" />
                 </div>
                 <div class="form-group">
@@ -59,5 +64,6 @@
     @Html.Partial("_ValidationScriptsPartial");
     <script>
         $(document).ready(GetArtists());
+        $(document).ready(GetGenresToNewRecord());
     </script>
 }

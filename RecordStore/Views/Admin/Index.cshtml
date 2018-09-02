@@ -15,20 +15,52 @@
         <tbody>
             @foreach(var country in Model.Countries)
             {
-            <tr>
-                <td>@country.CountryName</td>
-                <td>
-                    <button country-name="@country.CountryName" class="btn btn-danger delete-country">
-                        Delete
-                    </button>
-                </td>
-            </tr>
+                <tr>
+                    <td>@country.CountryName</td>
+                    <td>
+                        <button country-name="@country.CountryName" class="btn btn-danger delete-country">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
             }
             <tr>
                 <td colspan="2">
                     <a class="btn btn-primary"
-                            asp-controller="Admin"
-                            asp-action="NewCountry">
+                       asp-controller="Admin"
+                       asp-action="NewCountry">
+                        New
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Genres</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Genre</th>
+                <th width="100"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var genre in Model.Genres)
+            {
+                <tr>
+                    <td>@genre.Id</td>
+                    <td>
+                        <button genre-id="@genre.Id" class="btn btn-danger delete-genre">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td colspan="2">
+                    <a class="btn btn-primary"
+                       asp-controller="Admin"
+                       asp-action="NewGenre">
                         New
                     </a>
                 </td>
@@ -49,29 +81,29 @@
         <tbody>
             @foreach(var artist in Model.Artists)
             {
-            <tr id="@artist.ArtistId" countryName="@artist.CountryName" class="artist-row">
-                <td>@artist.Name</td>
-                <td>@artist.CountryName</td>
-                <td>
-                    <a class="btn btn-info"
-                            asp-controller="Admin"
-                            asp-action="EditArtist"
-                            asp-route-artistId="@artist.ArtistId">
-                        Edit
-                    </a>
-                </td>
-                <td>
-                    <button artist-id="@artist.ArtistId" class="btn btn-danger delete-artist">
-                        Delete
-                    </button>
-                </td>
-            </tr>
+                <tr id="@artist.ArtistId" countryName="@artist.CountryName" class="artist-row">
+                    <td>@artist.Name</td>
+                    <td>@artist.CountryName</td>
+                    <td>
+                        <a class="btn btn-info"
+                           asp-controller="Admin"
+                           asp-action="EditArtist"
+                           asp-route-artistId="@artist.ArtistId">
+                            Edit
+                        </a>
+                    </td>
+                    <td>
+                        <button artist-id="@artist.ArtistId" class="btn btn-danger delete-artist">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
             }
             <tr>
                 <td colspan="4">
                     <a class="btn btn-primary"
-                            asp-controller="Admin"
-                            asp-action="NewArtist">
+                       asp-controller="Admin"
+                       asp-action="NewArtist">
                         New
                     </a>
                 </td>
@@ -94,31 +126,31 @@
         <tbody>
             @foreach(var record in Model.Records)
             {
-            <tr id="@record.RecordId" artistId="@record.ArtistId" class="record-row">
-                <td>@record.Title</td>
-                <td>@record.Artist.Name</td>
-                <td>@record.Amount</td>
-                <td>@record.Type</td>
-                <td>
-                    <a class="btn btn-info"
-                            asp-controller="Admin"
-                            asp-action="EditRecord"
-                            asp-route-recordId="@record.RecordId">
-                        Edit
-                    </a>
-                </td>
-                <td>
-                    <button record-id="@record.RecordId" class="btn btn-danger delete-record">
-                        Delete
-                    </button>
-                </td>
-            </tr>
+                <tr id="@record.RecordId" genreId="@record.GenreId" artistId="@record.ArtistId" class="record-row">
+                    <td>@record.Title</td>
+                    <td>@record.Artist.Name</td>
+                    <td>@record.Amount</td>
+                    <td>@record.Type</td>
+                    <td>
+                        <a class="btn btn-info"
+                           asp-controller="Admin"
+                           asp-action="EditRecord"
+                           asp-route-recordId="@record.RecordId">
+                            Edit
+                        </a>
+                    </td>
+                    <td>
+                        <button record-id="@record.RecordId" class="btn btn-danger delete-record">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
             }
             <tr>
                 <td colspan="7">
                     <a class="btn btn-primary"
-                            asp-controller="Admin"
-                            asp-action="NewRecord">
+                       asp-controller="Admin"
+                       asp-action="NewRecord">
                         New
                     </a>
                 </td>

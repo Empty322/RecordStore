@@ -25,10 +25,11 @@ namespace RecordStore
         {
 			services.AddDistributedMemoryCache();
 			services.AddSession();
-			services.AddDbContext<ApplicationDbContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+			services.AddDbContext<ApplicationDbContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("RecordStore")));
 			services.AddTransient<IRecordRepository, RecordRepository>();
 			services.AddTransient<IArtistRepository, ArtistRepository>();
 			services.AddTransient<ICountryRepository, CountryRepository>();
+			services.AddTransient<IGenreRepository, GenreRepository>();
 
 			services.Configure<EmailServiceOptions>(Configuration.GetSection("Email"));
 			services.AddSingleton<IEmailService, EmailService>();
@@ -67,7 +68,7 @@ namespace RecordStore
 
 			ApplicationUser applicationUser = new ApplicationUser { UserName = Configuration["Admin:Login"] };
 			var result = await userManager.CreateAsync(applicationUser, Configuration["Admin:Password"]);
-			if (result.Succeeded)
+			if(result.Succeeded)
 			{
 				await roleManager.CreateAsync(new IdentityRole("Admin"));
 				await userManager.AddToRoleAsync(applicationUser, "Admin");
@@ -84,5 +85,5 @@ namespace RecordStore
 
 			DbInitializer.Seed(app);
 		}
-    }
+	}
 }

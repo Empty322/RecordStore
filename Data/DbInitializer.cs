@@ -19,6 +19,9 @@ namespace Data
 				Country Sweden = new Country { CountryName = "Sweden" };
 				Country Germany = new Country { CountryName = "Germany" };
 
+				Genre Death = new Genre { Id = "Death" };
+				Genre Thrash = new Genre { Id = "Thrash" };
+
 				Artist Entombed = new Artist
 				{
 					Name = "Entombed",
@@ -44,7 +47,8 @@ namespace Data
 					Amount = 5,
 					Description = "Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
 					Type = "CD",
-					Artist = Entombed
+					Artist = Entombed,
+					Genre = Death
 				};
 				Record KhaosLegions = new Record
 				{
@@ -52,7 +56,8 @@ namespace Data
 					Amount = 10,
 					Description = "",
 					Type = "Vinyl",
-					Artist = ArchEnemy
+					Artist = ArchEnemy,
+					Genre = Death
 				};
 				Record WarEternal = new Record
 				{
@@ -60,7 +65,8 @@ namespace Data
 					Amount = 6,
 					Description = "",
 					Type = "CD",
-					Artist = ArchEnemy
+					Artist = ArchEnemy,
+					Genre = Death
 				};
 				Record EndlessPain = new Record
 				{
@@ -68,7 +74,8 @@ namespace Data
 					Amount = 7,
 					Description = "",
 					Type = "CD",
-					Artist = Kreator
+					Artist = Kreator,
+					Genre = Thrash
 				};
 				Record PleasureToKill = new Record
 				{
@@ -76,7 +83,8 @@ namespace Data
 					Amount = 3,
 					Description = "",
 					Type = "CD",
-					Artist = Kreator
+					Artist = Kreator,
+					Genre = Thrash
 				};
 
 				context.Countries.Add(Sweden);

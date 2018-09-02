@@ -6,7 +6,6 @@ using Data.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace RecordStore.Controllers
@@ -17,12 +16,14 @@ namespace RecordStore.Controllers
 		private readonly ICountryRepository countryRepository;
 		private readonly IArtistRepository artistRepository;
 		private readonly IRecordRepository recordRepository;
+		private readonly IGenreRepository genreRepository;
 
-		public AdminController(ICountryRepository countryRepository, IArtistRepository artistRepository, IRecordRepository recordRepository)
+		public AdminController(ICountryRepository countryRepository, IArtistRepository artistRepository, IRecordRepository recordRepository, IGenreRepository genreRepository)
 		{
 			this.countryRepository = countryRepository;
 			this.artistRepository = artistRepository;
 			this.recordRepository = recordRepository;
+			this.genreRepository = genreRepository;
 		}		
 
 		public IActionResult Index()
@@ -30,6 +31,7 @@ namespace RecordStore.Controllers
 			AdminViewModel model = new AdminViewModel
 			{
 				Countries = countryRepository.GetAll(),
+				Genres = genreRepository.GetAll(),
 				Artists = artistRepository.GetAll(),
 				Records = recordRepository.GetAll()
 			};
@@ -53,6 +55,27 @@ namespace RecordStore.Controllers
 				return RedirectToAction(nameof(Index));
 			}
 			return View(country);
+		}
+
+		#endregion
+
+		#region Genre actions
+
+		[HttpGet]
+		public IActionResult NewGenre()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public IActionResult NewGenre(Genre genre)
+		{
+			if(ModelState.IsValid)
+			{
+				genreRepository.Create(genre);
+				return RedirectToAction(nameof(Index));
+			}
+			return View(genre);
 		}
 
 		#endregion
@@ -129,48 +152,6 @@ namespace RecordStore.Controllers
 				return RedirectToAction(nameof(Index));
 			}
 			return View(record);
-		}
-
-		#endregion
-
-		#region API methods
-
-		[Produces("application/json")]
-		[HttpGet("/api/GetCountries")]
-		public IActionResult GetCountries()
-		{
-			return Ok(JsonConvert.SerializeObject(countryRepository.GetAll().Select(c => c.CountryName)));
-		}
-
-		[Produces("application/json")]
-		[HttpGet("/api/GetArtists")]
-		public IActionResult GetArtists()
-		{
-			return Ok(JsonConvert.SerializeObject(artistRepository.GetAll()));
-		}
-
-		[HttpDelete("/api/DeleteCountry/{countryName}")]
-		public IActionResult DeleteCountry(string countryName)
-		{
-			Country country = countryRepository.GetAll().FirstOrDefault(c => c.CountryName == countryName);
-			countryRepository.Delete(country);
-			return Ok("success");
-		}
-
-		[HttpDelete("/api/DeleteArtist/{artistId}")]
-		public IActionResult DeleteArtist(int artistId)
-		{
-			Artist artist = artistRepository.GetById(artistId);
-			artistRepository.Delete(artist);
-			return Ok("success");
-		}
-
-		[HttpDelete("/api/DeleteRecord/{recordId}")]
-		public IActionResult DeleteRecord(int recordId)
-		{
-			Record record = recordRepository.GetById(recordId);
-			recordRepository.Delete(record);
-			return Ok("success");
 		}
 
 		#endregion
