@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repository
 {
-	public class RecordRepository : Repository<Record>, IRecordRepository
+	public class RecordRepository : Repository<Record, int>, IRecordRepository
 	{
 		public RecordRepository(ApplicationDbContext db) : base(db)
 		{

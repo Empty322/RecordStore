@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repository
 {
-	public class CountryRepository : Repository<Country>, ICountryRepository
+	public class CountryRepository : Repository<Country, string>, ICountryRepository
 	{
 		public CountryRepository(ApplicationDbContext db) : base(db)
 		{

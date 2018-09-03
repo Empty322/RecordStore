@@ -5,7 +5,7 @@ using Data.Entities;
 
 namespace Data.Interfaces
 {
-    public interface ICountryRepository : IRepository<Country>
+    public interface ICountryRepository : IRepository<Country, string>
     {
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repository
 {
-	public class Repository<T> : IRepository<T> where T : class
+	public class Repository<T, IdType> : IRepository<T, IdType> where T : class
 	{
 		protected readonly ApplicationDbContext db;
 
@@ -44,7 +44,7 @@ namespace Data.Repository
 			return db.Set<T>();
 		}
 
-		public virtual T GetById(int id)
+		public virtual T GetById(IdType id)
 		{
 			return db.Set<T>().Find(id);
 		}

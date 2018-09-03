@@ -6,7 +6,7 @@ using Data.Interfaces;
 
 namespace Data.Repository
 {
-	public class GenreRepository : Repository<Genre>, IGenreRepository
+	public class GenreRepository : Repository<Genre, string>, IGenreRepository
 	{
 		public GenreRepository(ApplicationDbContext db) : base(db)
 		{

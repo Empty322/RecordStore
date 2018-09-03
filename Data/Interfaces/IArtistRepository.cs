@@ -5,7 +5,7 @@ using Data.Entities;
 
 namespace Data.Interfaces
 {
-	public interface IArtistRepository : IRepository<Artist>, IHasImage
+	public interface IArtistRepository : IRepository<Artist, int>, IHasImage
 	{
 		IEnumerable<Artist> GetByCountry(Country country);
 

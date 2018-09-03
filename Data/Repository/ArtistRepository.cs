@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repository
 {
-	public class ArtistRepository : Repository<Artist>, IArtistRepository
+	public class ArtistRepository : Repository<Artist, int>, IArtistRepository
 	{
 		public ArtistRepository(ApplicationDbContext db) : base(db)
 		{
