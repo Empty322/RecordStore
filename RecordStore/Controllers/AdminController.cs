@@ -88,6 +88,13 @@ namespace RecordStore.Controllers
 			return View();
 		}
 
+		[HttpGet]
+		public IActionResult EditArtist(int artistId)
+		{
+			Artist artist = artistRepository.GetById(artistId);
+			return View("NewArtist", artist);
+		}
+
 		[HttpPost]
 		public IActionResult NewArtist(Artist artist, IFormFile image)
 		{
@@ -110,11 +117,21 @@ namespace RecordStore.Controllers
 						artist.ImageMimeType = "image/jpeg";
 					}
 				}
-				artistRepository.Create(artist);
+				Artist old = artistRepository.GetById(artist.ArtistId);
+				if(old == null)
+					artistRepository.Create(artist);
+				else {
+					old.CountryName = artist.CountryName;
+					old.Description = artist.Description;
+					old.Name = artist.Name;
+					old.ImageData = artist.ImageData;
+					old.ImageMimeType = artist.ImageMimeType;
+					artistRepository.Update(old);				
+				}
 				return RedirectToAction(nameof(Index));
 			}
 			return View(artist);
-		}
+		}	
 
 		#endregion
 
@@ -124,6 +141,13 @@ namespace RecordStore.Controllers
 		public IActionResult NewRecord()
 		{
 			return View();
+		}
+
+		[HttpGet]
+		public IActionResult EditRecord(int recordId)
+		{
+			Record record = recordRepository.GetById(recordId);
+			return View("NewRecord", record);
 		}
 
 		[HttpPost]
@@ -148,7 +172,21 @@ namespace RecordStore.Controllers
 						record.ImageMimeType = "image/jpeg";
 					}
 				}
-				recordRepository.Create(record);
+				Record old = recordRepository.GetById(record.RecordId);
+				if(old == null)
+					recordRepository.Create(record);
+				else
+				{
+					old.Title = record.Title;
+					old.Type = record.Type;
+					old.Description = record.Description;
+					old.GenreId = record.GenreId;
+					old.ArtistId = record.ArtistId;
+					old.Amount = record.Amount;
+					old.ImageData = record.ImageData;
+					old.ImageMimeType = record.ImageMimeType;
+					recordRepository.Update(old);
+				}
 				return RedirectToAction(nameof(Index));
 			}
 			return View(record);
