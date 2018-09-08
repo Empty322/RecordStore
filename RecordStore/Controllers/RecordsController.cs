@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Data.Entities;
 using Data.Interfaces;
@@ -39,6 +40,10 @@ namespace RecordStore.Controllers
 				return View(record);
 			else
 				return RedirectToAction(nameof(Error));
+		}
+
+		public IActionResult Search(string text) {
+			throw new NotImplementedException();
 		}
 
 		public FileContentResult GetImage(int id)

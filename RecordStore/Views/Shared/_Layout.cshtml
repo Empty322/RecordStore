@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var controller = ViewContext.RouteData.Values["Controller"].ToString();
+    if (controller != "Artists" && controller != "Records") {
+        controller = "Records";
+    }
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -38,6 +45,14 @@
             </a>
         </div>
     </header>    
+    <section class="container clearfix">
+        <form asp-controller="@controller" asp-action="Search">        
+            <div class="search">
+                <input class="search-input" type="text" placeholder="Search @controller">
+                <button type="submit" class="search-btn">Search</button>
+            </div>  
+        </form>        
+    </section>
     <section class="container">        
         <div class="row">
             <div class="col-12 col-md-3 mb-2">

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Data.Entities;
 using Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,10 @@ namespace RecordStore.Controllers
 				return View(artist);
 			else
 				return RedirectToAction("Error", "Record");
+		}
+
+		public IActionResult Search(string text) {
+			throw new NotImplementedException();
 		}
 
 		public FileContentResult GetImage(int id)

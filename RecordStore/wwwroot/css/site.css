@@ -35,16 +35,64 @@ footer {
 .btn-cart{
     float: right;
     margin: 40px 20px;
-    color: #fff;
+    color: #f8f8f8;
+    animation-name: cart;
+    animation-duration: 0.5s;
+    animation-play-state: paused;
+    animation-iteration-count: infinite;
 }
 
 .btn-cart:hover {
-    color: #444;
+    animation-play-state: running;
+}
+
+@keyframes cart{
+    0%{
+        color: #9e9e9e;
+    }
+    48%{
+        color: #ccb9ff;
+    }
+    52% {
+        color: #ccb9ff;
+    }
+    100%{
+        color: #9e9e9e;
+    }
 }
 
 .clearfix::after {
     content: "";
     clear: both;
+}
+
+.search {
+    position: relative;
+    margin: 0 0 20px 0;
+    background: #fff;    
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.search-input {
+    width: 85%;
+    margin: 5px 0 5px 5px;
+    border: none;   
+    outline: none;
+}
+
+.search-btn {
+    width: 15%;
+    border-width: 0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: #979797;
+    color: #000000;
+}
+
+.search-btn:hover {
+    box-shadow: #000 1px 1px 2px inset;
 }
 
 .side-menu {
