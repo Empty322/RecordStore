@@ -1,4 +1,15 @@
-﻿
-<ul id="genres" class="list-group">
+﻿<div class="side-menu">
 
+<ul class="side-menu-list">
+    <li class="side-menu-list-item">        
+        <a asp-controller="Artists" asp-action="List"><i class="fas fa-users" ></i> Artists</a>
+    </li>
+    <li id="menu-records" class="side-menu-list-item">    
+        <a asp-controller="Records" asp-action="List"><i class="fas fa-compact-disc" ></i> Records</a>
+        <ul id="genres" class="genres">
+
+        </ul>
+    </li>
 </ul>
+
+</div>

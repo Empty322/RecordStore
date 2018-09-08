@@ -1,34 +1,100 @@
-﻿.container {
-    margin-top: 3rem;
-}
-
-body {
+﻿body {
     background-color: #909090;
+    margin: 0;
+    padding: 0;
 }
 
-.card {
-    margin-bottom: 1rem;
+.wrapper {
+    min-height: calc(100vh - 119px);
 }
 
-.image {
+.container {
+    width: 1080px;
+}
+
+header {
+    position: relative;
+}
+
+footer {
     width: 100%;
+    padding: 30px 0px;
+    background-color: #6e6e6e;
 }
 
-.side-menu > .list-group, .content, #carouselExampleIndicators {
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+.logo, .logo:hover{
+    padding: 0;
+    float: left;
+    font-size: 50px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 20px;
+    color: rgb(32, 32, 32);
+    text-decoration: none;
 }
 
-.content {
-    border-radius: 3px;
-    padding: 2rem;
-    background-color: white;
+.btn-cart{
+    float: right;
+    margin: 40px 20px;
+    color: #fff;
 }
 
-.navbar {
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+.btn-cart:hover {
+    color: #444;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+}
+
+.side-menu {
+    background-color: #6e6e6e;
+    box-shadow: #000 1px 1px 2px;
+    border-radius: 2px;
+    overflow: hidden;    
+}
+
+.side-menu ul  {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.side-menu li a {
+    padding: 10px 5px;
+}
+
+.side-menu li:hover {
+    background: #ebfff0;
+}
+
+.side-menu-list-item li {
+    background-color: #9b9b9b;
+}
+
+.side-menu a {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: block;
+    font-size: 18px;
+    text-decoration: none;
+    color: #000000;
+    margin-left: 10px;
+}
+
+.side-menu > ul > li > ul > li > a {
+    margin-left: 35px;
+}
+
+.genres {
+    display: block;    
+    transition: 0.2s;
+    opacity: 1;
+    min-width: 150px;
+    margin-left: 30px;
 }
 
 #vinyl-img {
+    width: 100%;
     z-index: -1;
     position: relative;
 }
@@ -37,10 +103,6 @@ body {
     width: 100%;    
     height: 100%;
     background: linear-gradient(to top, #909090, transparent);
-}
-
-.navbar > .container {
-    margin-top: 0px;
 }
 
 @media screen and (min-width: 0px) {
