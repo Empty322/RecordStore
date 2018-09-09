@@ -3,10 +3,11 @@
     ViewData["Title"] = "Artists";
 }
 
-<div class="card-columns">
-    @foreach(Artist a in Model)
-    {
-        <div class="card">
+<div class="content">
+    <div class="row">
+        @foreach(Artist a in Model)
+        {
+        <div class="cell col-12 col-md-3">
             @if(a.ImageData != null)
             {
                 <img class="card-img-top image" src="@Url.Action("GetImage", "Artists", new { id = a.ArtistId })" />
@@ -15,11 +16,10 @@
             {
                 <img class="card-img-top image" style="width:100%" src="~/img/placeholder.jpg" />
             }
-            <div class="card-body">
-                <h6 class="card-title">@a.Name</h6>
-                <p class="card-text">@a.CountryName</p>
-                <a class="card-link" asp-controller="Artists" asp-action="Artist" asp-route-id="@a.ArtistId">More info</a>
-            </div>
+            <h6>@a.Name</h6>
+            <p>@a.CountryName</p>
+            <a class="card-link" asp-controller="Artists" asp-action="Artist" asp-route-id="@a.ArtistId">More info</a>
         </div>
-    }
+        }
+    </div>
 </div>

@@ -18,18 +18,17 @@ namespace RecordStore.Controllers
 			this.artistRepository = artistRepository;
 		}
 
-
 		public IActionResult List()
 		{
 			IEnumerable<Record> records = recordRepository.GetAll();
             return View(records);
         }
 
-		[Route("Records/List/{genreId}")]
-		public IActionResult List(string genreId)
+		[Route("Records/Genre/{genreId}")]
+		public IActionResult Genre(string genreId)
 		{
 			IEnumerable<Record> records = recordRepository.GetAll().Where(r => r.GenreId == genreId);
-			return View(records);
+			return View("List", records);
 		}
 
 		[Route("Record/{id}")]

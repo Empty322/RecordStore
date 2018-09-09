@@ -26,7 +26,7 @@ function GetGenresToSideMenu() {
     $.get(url, function (data) {
         var genres = JSON.parse(data);
         for (var i = 0; i < genres.length; i++) {
-            $("#genres").append('<li><a href="/Records/List/' + genres[i].Id + '">- ' + genres[i].Id + '</a></li>');
+            $("#genres").append('<li><a href="/Records/Genre/' + genres[i].Id + '">- ' + genres[i].Id + '</a></li>');
         }
     })
 }
