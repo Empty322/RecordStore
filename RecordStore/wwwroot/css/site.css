@@ -188,6 +188,10 @@ header {
     outline: none;
 }
 
+.cell > .more-artist-info {
+    margin-top: 15px;
+}
+
 /* ============= FOOTER ============== */
 
 footer {
