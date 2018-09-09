@@ -1,25 +1,28 @@
 ﻿@model IEnumerable<Record>
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Records";
 }
 
-<div class="card-columns">
-    @foreach(Record r in Model)
-    {
-        <div class="card">
-            @if(r.ImageData != null)
-            {
-                <img class="card-img-top image" src="@Url.Action("GetImage", "Records", new { id = r.RecordId })" />
-            }
-            else
-            {
-                <img class="card-img-top image" src="~/img/placeholder.jpg" />
-            }
-            <div class="card-body">
-                <h6 class="card-title">@r.Title</h6>
-                <p class="card-text">@r.Artist.Name</p>
-                <a class="card-link" asp-controller="Records" asp-action="Record" asp-route-id="@r.RecordId">More info</a>
+<div class="content">
+    <div class="row">
+        @foreach(Record r in Model)
+        {
+            <div class="cell col-12 col-md-3">
+                @if(r.ImageData != null)
+                {
+                    <img class="card-img-top image" src="@Url.Action("GetImage", "Records", new { id = r.RecordId })" />
+                }
+                else
+                {
+                    <img class="card-img-top image" src="~/img/placeholder.jpg" />
+                }
+                <h6>@r.Title</h6>
+                <p>@r.Artist.Name</p>
+                <div class="cell-btns">
+                    <a class="more-record-info" asp-controller="Records" asp-action="Record" asp-route-id="@r.RecordId">More info</a>
+                    <button class="fast-buy"><i class="fas fa-shopping-cart"></i>19.99$</button>                                    
+                </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>

@@ -76,11 +76,15 @@ header {
     border-width: 0;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: #979797;
+    background-color: #979797;
     color: #000000;
 }
 
 .search-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.search-btn:active {
     box-shadow: #000 1px 1px 2px inset;
 }
 
@@ -89,7 +93,7 @@ header {
 .side-menu {
     background-color: #e0e0e0;
     box-shadow: #000 1px 1px 2px;
-        border-radius: 2px;
+    border-radius: 2px;
     overflow: hidden;    
 }
 
@@ -130,6 +134,56 @@ header {
     opacity: 1;
     min-width: 150px;
     margin-left: 30px;
+}
+
+/* ============= CONTENT ============== */
+
+.content {
+    background-color: #e0e0e0;
+    padding: 5px 20px;
+    margin-bottom: 20px;
+}
+
+.cell {
+    padding: 5px;
+}
+
+.cell:hover {
+    box-shadow: #000 0px 0px 2px;    
+}
+
+.cell a, .cell p {
+    padding: 0;
+    margin: 0;
+}
+
+.cell h6 {
+    margin: 15px 0 0 0;
+}
+
+.cell > .cell-btns {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cell > .cell-btns > .more-record-info {
+    display: block;
+    padding: 3px;
+}
+
+.cell > .cell-btns > .fast-buy {
+    border: solid 1px;
+}
+
+.cell > .cell-btns > .fast-buy:hover {
+    background-color: #fff; 
+}
+
+.cell > .cell-btns > .fast-buy:active {
+    box-shadow: #000 1px 1px 2px inset;
+    outline: none;
 }
 
 /* ============= FOOTER ============== */
