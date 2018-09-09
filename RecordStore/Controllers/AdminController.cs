@@ -117,10 +117,11 @@ namespace RecordStore.Controllers
 						artist.ImageMimeType = "image/jpeg";
 					}
 				}
-				Artist old = artistRepository.GetById(artist.ArtistId);
-				if(old == null)
+				
+				if(artist.ArtistId == 0)
 					artistRepository.Create(artist);
 				else {
+					Artist old = artistRepository.GetById(artist.ArtistId);
 					old.CountryName = artist.CountryName;
 					old.Description = artist.Description;
 					old.Name = artist.Name;
@@ -172,11 +173,12 @@ namespace RecordStore.Controllers
 						record.ImageMimeType = "image/jpeg";
 					}
 				}
-				Record old = recordRepository.GetById(record.RecordId);
-				if(old == null)
+				
+				if(record.RecordId == 0)
 					recordRepository.Create(record);
 				else
 				{
+					Record old = recordRepository.GetById(record.RecordId);
 					old.Title = record.Title;
 					old.Type = record.Type;
 					old.Description = record.Description;
