@@ -5,18 +5,17 @@
 <div class="content mb-2">
     <h2>@Model.Name</h2>
     <div class="row">
-        <div class="col-12 col-sm-8">
+        <div class="col-12 col-sm-6">
             @if(Model.ImageData != null)
             {
-                <img class="img-thumbnail image" src="@Url.Action("GetImage", "Artists", new { id = Model.ArtistId })" />
+                <img class="image" src="@Url.Action("GetImage", "Artists", new { id = Model.ArtistId })" />
             }
             else
             {
-                <img class="img-thumbnail image" src="~/img/placeholder.jpg" />
+                <img class="image" src="~/img/placeholder.jpg" />
             }
         </div>
-        <div class="col-12 col-sm-4">
-            <h4>Artist: @Model.Name</h4>
+        <div class="col-12 col-sm-6">
             <h4>Country: @Model.CountryName</h4>
         </div>
     </div>
@@ -24,25 +23,26 @@
     <div class="blog-description">
         <p>@Model.Description</p>
     </div>
-</div>
-
-<div class="card-columns">
-    @foreach(Record r in Model.Records)
-    {
-        <div class="card">
-            @if(r.ImageData != null)
-            {
-                <img class="card-img-top" style="width:100%" src="@Url.Action("GetImage", "Records", new { id = r.RecordId })" />
-            }
-            else
-            {
-                <img class="card-img-top" style="width:100%" src="~/img/placeholder.jpg" />
-            }
-            <div class="card-body">
-                <h6 class="card-title">@r.Title</h6>
-                <p class="card-text">@r.Artist.Name</p>
-                <a class="card-link" asp-controller="Records" asp-action="Record" asp-route-id="@r.RecordId">More info</a>
+    <h4>Records:</h4>
+    <div class="row">
+        @foreach(Record r in Model.Records)
+        {
+            <div class="cell col-12 col-md-3">
+                @if(r.ImageData != null)
+                {
+                    <img class="image" src="@Url.Action("GetImage", "Records", new { id = r.RecordId })" />
+                }
+                else
+                {
+                    <img class="image" src="~/img/placeholder.jpg" />
+                }
+                <h6>@r.Title</h6>
+                <p>@r.Artist.Name</p>
+                <div class="cell-btns">
+                    <a class="more-record-info" asp-controller="Records" asp-action="Record" asp-route-id="@r.RecordId">More info</a>
+                    <button class="fast-buy"><i class="fas fa-shopping-cart"></i>19.99$</button>
+                </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>
