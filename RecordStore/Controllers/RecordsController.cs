@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Data.Entities;
 using Data.Interfaces;
@@ -17,18 +18,17 @@ namespace RecordStore.Controllers
 			this.artistRepository = artistRepository;
 		}
 
-
 		public IActionResult List()
 		{
 			IEnumerable<Record> records = recordRepository.GetAll();
             return View(records);
         }
 
-		[Route("Records/List/{genreId}")]
-		public IActionResult List(string genreId)
+		[Route("Records/Genre/{genreId}")]
+		public IActionResult Genre(string genreId)
 		{
 			IEnumerable<Record> records = recordRepository.GetAll().Where(r => r.GenreId == genreId);
-			return View(records);
+			return View("List", records);
 		}
 
 		[Route("Record/{id}")]
@@ -39,6 +39,10 @@ namespace RecordStore.Controllers
 				return View(record);
 			else
 				return RedirectToAction(nameof(Error));
+		}
+
+		public IActionResult Search(string text) {
+			throw new NotImplementedException();
 		}
 
 		public FileContentResult GetImage(int id)

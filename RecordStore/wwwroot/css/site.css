@@ -1,34 +1,13 @@
-﻿.container {
-    margin-top: 3rem;
-}
-
-body {
+﻿body {
     background-color: #909090;
+    margin: 0;
+    padding: 0;
 }
 
-.card {
-    margin-bottom: 1rem;
-}
-
-.image {
-    width: 100%;
-}
-
-.side-menu > .list-group, .content, #carouselExampleIndicators {
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-
-.content {
-    border-radius: 3px;
-    padding: 2rem;
-    background-color: white;
-}
-
-.navbar {
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-}
+/* ============= BACKGROUND IMAGE ============== */
 
 #vinyl-img {
+    width: 100%;
     z-index: -1;
     position: relative;
 }
@@ -39,24 +18,219 @@ body {
     background: linear-gradient(to top, #909090, transparent);
 }
 
-.navbar > .container {
-    margin-top: 0px;
+/* ============= HEADER ============== */
+
+header {
+    background: #e0e0e0;
+    box-shadow: #000 1px 1px 2px;
+}
+
+.logo, .logo:hover{
+    padding: 0;
+    float: left;
+    font-size: 50px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 20px;
+    color: #202020;
+    text-decoration: none;
+}
+
+.btn-cart{
+    float: right;
+    margin: 40px 20px;
+    color: #202020;
+}
+
+.btn-cart:hover {
+    color: #646464;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+}
+
+/* ============= SEARCH LINE ============== */
+
+.search {
+    border: solid 1px #202020;
+    position: relative;
+    margin: 20px 0;
+    background: #fff;    
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: #000 1px 1px 2px;
+    
+}
+
+.search-input {
+    width: 85%;
+    margin: 5px 0 5px 5px;
+    border: none;   
+    outline: none;
+}
+
+.search-btn {
+    width: 15%;
+    border-width: 0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: #979797;
+    color: #000000;
+}
+
+.search-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.search-btn:active {
+    box-shadow: #000 1px 1px 2px inset;
+}
+
+/* ============= SIDE MENU ============== */
+
+.side-menu {
+    background-color: #e0e0e0;
+    box-shadow: #000 1px 1px 2px;
+    border-radius: 2px;
+    overflow: hidden;    
+}
+
+.side-menu ul  {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.side-menu li a {
+    padding: 10px 5px;
+}
+
+.side-menu li:hover {
+    background-color: #9b9b9b;    
+}
+
+.side-menu-list-item li {
+    background-color: #ebfff0;
+}
+
+.side-menu a {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: block;
+    font-size: 18px;
+    text-decoration: none;
+    color: #000000;
+    margin-left: 10px;
+}
+
+.side-menu > ul > li > ul > li > a {
+    margin-left: 35px;
+}
+
+.genres {
+    display: block;    
+    transition: 0.2s;
+    opacity: 1;
+    min-width: 150px;
+    margin-left: 30px;
+}
+
+/* ============= CONTENT ============== */
+
+.content {
+    background-color: #e0e0e0;
+    padding: 5px 20px;
+    margin-bottom: 20px;
+    box-shadow: #000 1px 1px 2px;
+    border-radius: 2px;
+}
+
+/* ============= CELLS ============== */
+
+.cell {
+    padding: 5px;
+}
+
+.cell:hover {
+    box-shadow: #000 0px 0px 2px;    
+}
+
+.cell a, .cell p {
+    padding: 0;
+    margin: 0;
+}
+
+.cell h6 {
+    margin: 15px 0 0 0;
+}
+
+.cell > .cell-btns {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cell > .cell-btns > .more-record-info {
+    display: block;
+    padding: 3px;
+}
+
+.cell > .cell-btns > .fast-buy {
+    border: solid 1px;
+}
+
+.cell > .cell-btns > .fast-buy:hover {
+    background-color: #fff; 
+}
+
+.cell > .cell-btns > .fast-buy:active {
+    box-shadow: #000 1px 1px 2px inset;
+    outline: none;
+}
+
+.cell > .more-artist-info {
+    margin-top: 15px;
+}
+
+/* ============= ID PAGE ============== */
+
+.image {
+    width: 100%;
+    border:solid #fff 2px;
+    border-radius: 2px;
+}
+
+/* ============= FOOTER ============== */
+
+footer {
+    width: 100%;
+    padding: 30px 0px;
+    background-color: #6e6e6e;
+    position: absolute;
+}
+
+/* ============= CONTAINER ============== */
+
+.container {
+    width: 1080px;
 }
 
 @media screen and (min-width: 0px) {
-    .card-columns {
-        column-count: 1;
+    .container {
+        width: auto;
     }
 }
 
 @media screen and (min-width: 768px) {
-    .card-columns {
-        column-count: 3;
+    .container {
+        width: 768px;
     }
 }
 
 @media screen and (min-width: 992px) {
-    .card-columns {
-        column-count: 4;
+    .container {
+        width: 992px;
     }
 }
