@@ -9,6 +9,11 @@ namespace Data.Entities
     {
 		public List<CartLine> Products { get; private set; }
 
+		public float Total { get {
+				return GetTotal();
+			}
+		}
+
 		public Cart()
 		{
 			Products = new List<CartLine>();
@@ -25,7 +30,8 @@ namespace Data.Entities
 
 		public void Delete(int id)
 		{
-			Products.Remove(Products.FirstOrDefault(p => p.Record.RecordId == id));
+			CartLine product = Products.FirstOrDefault(p => p.Record.RecordId == id);
+			Products.Remove(product);
 		}
 
 		public void Clear()
@@ -33,11 +39,20 @@ namespace Data.Entities
 			Products.Clear();
 		}
 
+		private float GetTotal()
+		{
+			float sum = 0;
+			foreach(CartLine product in Products)
+				sum += product.Record.Price;
+			return sum;
+		}
+
 		public override string ToString()
 		{
 			StringBuilder result = new StringBuilder();
 			foreach(CartLine line in Products)
-				result.Append(line.Record.Artist.Name + " - " + line.Record.Title + " x " + line.Amount + "\n");
+				result.Append(line.Record.Artist.Name + " - " + line.Record.Title + " " + line.Record.Price + " x " + line.Amount + "\n");
+			result.Append("Total price: " + Total + "\n");
 			return result.ToString();
 		}
 	}
