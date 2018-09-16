@@ -48,7 +48,8 @@ namespace Data
 					Description = "Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
 					Type = "CD",
 					Artist = Entombed,
-					Genre = Death
+					Genre = Death,
+					Price = 20
 				};
 				Record KhaosLegions = new Record
 				{
@@ -57,7 +58,8 @@ namespace Data
 					Description = "",
 					Type = "Vinyl",
 					Artist = ArchEnemy,
-					Genre = Death
+					Genre = Death,
+					Price = 20
 				};
 				Record WarEternal = new Record
 				{
@@ -66,7 +68,8 @@ namespace Data
 					Description = "",
 					Type = "CD",
 					Artist = ArchEnemy,
-					Genre = Death
+					Genre = Death,
+					Price = 20
 				};
 				Record EndlessPain = new Record
 				{
@@ -75,7 +78,8 @@ namespace Data
 					Description = "",
 					Type = "CD",
 					Artist = Kreator,
-					Genre = Thrash
+					Genre = Thrash,
+					Price = 20
 				};
 				Record PleasureToKill = new Record
 				{
@@ -84,7 +88,8 @@ namespace Data
 					Description = "",
 					Type = "CD",
 					Artist = Kreator,
-					Genre = Thrash
+					Genre = Thrash,
+					Price = 20
 				};
 
 				context.Countries.Add(Sweden);

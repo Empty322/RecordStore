@@ -36,5 +36,8 @@ namespace Data.Entities
 		public byte[] ImageData { get; set; }
 
 		public string ImageMimeType { get; set; }
+
+		[Required]
+		public float Price { get; set; }
 	}
 }
