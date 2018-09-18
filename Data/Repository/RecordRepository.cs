@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Data.Entities;
 using Data.Interfaces;
@@ -26,6 +27,11 @@ namespace Data.Repository
 		public override Record GetById(int id)
 		{
 			return db.Records.Include(r => r.Artist).FirstOrDefault(r => r.RecordId == id);
+		}
+
+		public override IEnumerable<Record> Find(Func<Record, bool> predicate)
+		{
+			return db.Records.Include(r => r.Artist).Where(predicate);
 		}
 
 		public bool GetImageById(int id, out byte[] bytes, out string contentType)

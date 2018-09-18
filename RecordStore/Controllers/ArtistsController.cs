@@ -32,7 +32,14 @@ namespace RecordStore.Controllers
 		}
 
 		public IActionResult Search(string text) {
-			throw new NotImplementedException();
+			if(text == null)
+				text = "";
+			List<Artist> artists = new List<Artist>(
+				artistRepository.Find(
+					a => a.Name.ToUpper().Contains(text.ToUpper())
+				)
+			);
+			return View("List", artists);
 		}
 
 		public FileContentResult GetImage(int id)

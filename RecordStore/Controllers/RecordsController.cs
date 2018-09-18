@@ -42,7 +42,14 @@ namespace RecordStore.Controllers
 		}
 
 		public IActionResult Search(string text) {
-			throw new NotImplementedException();
+			if(text == null)
+				text = "";
+			List<Record> records = new List<Record>(
+				recordRepository.Find(
+					a => a.Title.ToUpper().Contains(text.ToUpper())
+				)
+			);
+			return View("List", records);
 		}
 
 		public FileContentResult GetImage(int id)

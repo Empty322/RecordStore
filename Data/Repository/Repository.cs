@@ -34,7 +34,7 @@ namespace Data.Repository
 			Save();
 		}
 
-		public IEnumerable<T> Find(Func<T, bool> predicate)
+		public virtual IEnumerable<T> Find(Func<T, bool> predicate)
 		{
 			return db.Set<T>().Where(predicate);
 		}
