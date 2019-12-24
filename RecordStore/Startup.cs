@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RecordStore.Controllers;
 using TicTacToe.Services;
 
 namespace RecordStore
@@ -25,12 +26,15 @@ namespace RecordStore
         {
 			services.AddDistributedMemoryCache();
 			services.AddSession();
-			services.AddDbContext<ApplicationDbContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("RecordStore")));
+			services.AddDbContext<ApplicationDbContext>(options => 
+				options.UseMySQL(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("RecordStore")));
 			services.AddTransient<IRecordRepository, RecordRepository>();
 			services.AddTransient<IArtistRepository, ArtistRepository>();
 			services.AddTransient<ICountryRepository, CountryRepository>();
 			services.AddTransient<IGenreRepository, GenreRepository>();
+			services.AddTransient<IOrderRepository, OrderRepository>();
 
+			services.Configure<YandexOptions>(Configuration.GetSection("YandexOptions"));
 			services.Configure<EmailServiceOptions>(Configuration.GetSection("Email"));
 			services.AddSingleton<IEmailService, EmailService>();
 
@@ -50,7 +54,7 @@ namespace RecordStore
 		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public async void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
 			
             if (env.IsDevelopment())
@@ -66,13 +70,13 @@ namespace RecordStore
 			app.UseSession();
 			app.UseAuthentication();
 
-			ApplicationUser applicationUser = new ApplicationUser { UserName = Configuration["Admin:Login"] };
-			var result = await userManager.CreateAsync(applicationUser, Configuration["Admin:Password"]);
-			if(result.Succeeded)
-			{
-				await roleManager.CreateAsync(new IdentityRole("Admin"));
-				await userManager.AddToRoleAsync(applicationUser, "Admin");
-			}
+			//ApplicationUser applicationUser = new ApplicationUser { UserName = Configuration["Admin:Login"] };
+			//var result = await userManager.CreateAsync(applicationUser, Configuration["Admin:Password"]);
+			//if(result.Succeeded)
+			//{
+			//	await roleManager.CreateAsync(new IdentityRole("Admin"));
+			//	await userManager.AddToRoleAsync(applicationUser, "Admin");
+			//}
 
 			app.UseStaticFiles();
 

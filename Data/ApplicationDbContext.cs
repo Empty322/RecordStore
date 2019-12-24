@@ -17,6 +17,8 @@ namespace Data
 
 		public DbSet<Genre> Genres { get; set; }
 
+		public DbSet<Order> Orders { get; set; }
+
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
 		{
 			Database.EnsureCreated();
@@ -35,8 +37,10 @@ namespace Data
 			modelBuilder.Entity<Record>().HasOne(r => r.Artist).WithMany(a => a.Records).HasForeignKey(r => r.ArtistId);
 			modelBuilder.Entity<Record>().HasOne(r => r.Genre).WithMany(g => g.Records).HasForeignKey(r => r.GenreId);
 
-			modelBuilder.Entity<Artist>().Property(a => a.ImageData).HasColumnType("MEDIUMBLOB");
-			modelBuilder.Entity<Record>().Property(r => r.ImageData).HasColumnType("MEDIUMBLOB");
+			//modelBuilder.Entity<Artist>().Property(a => a.ImageData).HasColumnType("MEDIUMBLOB");
+			//modelBuilder.Entity<Record>().Property(r => r.ImageData).HasColumnType("MEDIUMBLOB");
+			modelBuilder.Entity<Artist>().Property(a => a.ImageData).HasColumnType("VARBINARY(MAX)");
+			modelBuilder.Entity<Record>().Property(r => r.ImageData).HasColumnType("VARBINARY(MAX)");
 
 			modelBuilder.Entity<ApplicationUser>().Property(u => u.Id).HasMaxLength(128);
 			modelBuilder.Entity<IdentityRole>().Property(r => r.Id).HasMaxLength(128);

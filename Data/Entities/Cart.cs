@@ -9,7 +9,8 @@ namespace Data.Entities
     {
 		public List<CartLine> Products { get; private set; }
 
-		public float Total { get {
+		public float Total {
+			get {
 				return GetTotal();
 			}
 		}
@@ -43,7 +44,7 @@ namespace Data.Entities
 		{
 			float sum = 0;
 			foreach(CartLine product in Products)
-				sum += product.Record.Price;
+				sum += product.Record.Price * product.Amount;
 			return sum;
 		}
 

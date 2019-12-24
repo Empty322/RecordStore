@@ -1,0 +1,22 @@
+﻿@model OrderViewModel
+@{
+    ViewData["Title"] = "Payment";
+}
+
+<div class="content">
+    <h2>Payment</h2>
+    <form method="POST" action="https://money.yandex.ru/quickpay/confirm.xml" lang="en">
+        <input name="label" value="@Model.OrderId" type="hidden">
+        <input name="receiver" value="410011284097625" type="hidden">
+        <input name="quickpay-form" value="shop" type="hidden">
+        <input type="hidden" name="targets" value="Оплата заказа @Model.OrderId">
+        <label for="sum">Сумма: @Model.Sum</label><br />
+        <input type="hidden" name="sum" value="@Model.Sum" data-type="number">
+        <label for="paymentType">Способ оплаты: </label><br />
+        <input type="radio" name="paymentType" value="PC">Яндекс.Деньгами<br />
+        <input type="radio" name="paymentType" value="AC">Банковской картой<br /><br />
+        <input class="btn btn-primary" type="submit" name="submit-button" value="Оплатить">
+        <input name="successURL" value="http://localhost:50000" type="hidden">
+        <input name="quickpay-back-url" value="http://localhost:50000/Cart/Payment" type="hidden">
+    </form>
+</div>

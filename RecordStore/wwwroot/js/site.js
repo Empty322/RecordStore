@@ -123,17 +123,3 @@ function SetDeleteItemButtons() {
         });
     })
 }
-
-//function SetAddBtn(id) {
-//    $("#add-btn").click(function () {
-//        var count = $("#items-count");
-//        $.ajax({
-//            url: "/api/AddToCart/" + id + "/" + count,
-//            type: 'POST',
-//            success: function (data) {
-//                if (data.result === "success")
-//                    alert("Product added to cart.");
-//            }
-//        })
-//    })
-//}
