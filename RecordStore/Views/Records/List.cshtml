@@ -3,26 +3,46 @@
     ViewData["Title"] = "Records";
 }
 
-<div class="content">
+<div id="record-list" class="content">
     <div class="row">
-        @foreach(Record r in Model)
-        {
+        @foreach (Record r in Model) {
             <div class="cell col-12 col-md-3">
-                @if(r.ImageData != null)
-                {
+                @if (r.ImageData != null) {
                     <img class="card-img-top image" src="@Url.Action("GetImage", "Records", new { id = r.RecordId })" />
                 }
-                else
-                {
+                else {
                     <img class="card-img-top image" src="~/img/placeholder.jpg" />
                 }
                 <h6>@r.Title</h6>
                 <p>@r.Artist.Name</p>
                 <div class="cell-btns">
                     <a class="more-record-info" asp-controller="Records" asp-action="Record" asp-route-id="@r.RecordId">More info</a>
-                    <button class="fast-buy"><i class="fas fa-shopping-cart"></i>@r.Price$</button>
+                    <button class="fast-buy" data-toggle="modal" data-target="#exampleModal" v-on:click="setRecordId(@r.RecordId)"><i class="fas fa-shopping-cart"></i>@r.Price$</button>
                 </div>
             </div>
         }
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form asp-controller="Cart" asp-action="Add" enctype="application/x-www-form-urlencoded">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">How much do you want to put in the shopping cart?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body justify-content-center">
+                        <input type="hidden" name="id" v-model="recordId" />
+                        <input type="number" name="count" value="1" id="items-count" class="btn btn-secondary" /> items.
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" value="Add" class="btn btn-primary" id="add-btn" />
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

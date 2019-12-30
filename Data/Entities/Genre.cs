@@ -8,6 +8,7 @@ namespace Data.Entities
     public class Genre
     {
 		[Key]
+		[Required]
 		public string Id { get; set; }
 
 		public List<Record> Records { get; set; }

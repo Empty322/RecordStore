@@ -6,8 +6,8 @@
         </li>
         <li id="menu-records" class="side-menu-list-item">    
             <a asp-controller="Records" asp-action="List"><i class="fas fa-compact-disc" ></i> Records</a>
-            <ul id="genres" class="genres">
-
+            <ul id="side-menu-genres" class="genres">
+                <li v-for="genre in genres"><a v-bind:href="'/Records/Genre/' + genre">- {{ genre }}</a></li>
             </ul>
         </li>
     </ul>

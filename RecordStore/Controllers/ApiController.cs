@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Data.Entities;
 using Data.Interfaces;
@@ -24,6 +25,12 @@ namespace RecordStore.Controllers
 		}
 
 		[Produces("application/json")]
+		[HttpGet("/api/GetGenres")]
+		public IActionResult GetGenres() {
+			return Ok(JsonConvert.SerializeObject(genreRepository.GetAll().Select(g => g.Id)));
+		}
+
+		[Produces("application/json")]
 		[HttpGet("/api/GetCountries")]
 		public IActionResult GetCountries()
 		{
@@ -38,19 +45,11 @@ namespace RecordStore.Controllers
 		}
 
 		[Produces("application/json")]
-		[HttpGet("/api/GetGenres")]
-		public IActionResult GetGenres()
-		{
-			return Ok(JsonConvert.SerializeObject(genreRepository.GetAll()));
-		}
-
-		[Authorize(Roles = "Admin")]
-		[HttpDelete("/api/DeleteCountry/{countryName}")]
-		public IActionResult DeleteCountry(string countryName)
-		{
-			Country country = countryRepository.GetAll().FirstOrDefault(c => c.CountryName == countryName);
-			countryRepository.Delete(country);
-			return Ok("success");
+		[HttpGet("/api/GetRecords")]
+		public IActionResult GetRecords() {
+			List<Record> records = recordRepository.GetAll().ToList();
+			records.ForEach(record => record.Artist.Records = null);
+			return Ok(JsonConvert.SerializeObject(records));
 		}
 
 		[Authorize(Roles = "Admin")]
@@ -59,6 +58,15 @@ namespace RecordStore.Controllers
 		{
 			Genre genre = genreRepository.GetAll().FirstOrDefault(g => g.Id == genreId);
 			genreRepository.Delete(genre);
+			return Ok("success");
+		}
+
+		[Authorize(Roles = "Admin")]
+		[HttpDelete("/api/DeleteCountry/{countryName}")]
+		public IActionResult DeleteCountry(string countryName)
+		{
+			Country country = countryRepository.GetAll().FirstOrDefault(c => c.CountryName == countryName);
+			countryRepository.Delete(country);
 			return Ok("success");
 		}
 

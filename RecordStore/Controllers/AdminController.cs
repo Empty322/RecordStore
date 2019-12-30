@@ -18,7 +18,11 @@ namespace RecordStore.Controllers
 		private readonly IRecordRepository recordRepository;
 		private readonly IGenreRepository genreRepository;
 
-		public AdminController(ICountryRepository countryRepository, IArtistRepository artistRepository, IRecordRepository recordRepository, IGenreRepository genreRepository)
+		public AdminController(
+			ICountryRepository countryRepository, 
+			IArtistRepository artistRepository, 
+			IRecordRepository recordRepository, 
+			IGenreRepository genreRepository)
 		{
 			this.countryRepository = countryRepository;
 			this.artistRepository = artistRepository;
@@ -28,14 +32,15 @@ namespace RecordStore.Controllers
 
 		public IActionResult Index()
         {
-			AdminViewModel model = new AdminViewModel
-			{
-				Countries = countryRepository.GetAll(),
-				Genres = genreRepository.GetAll(),
-				Artists = artistRepository.GetAll(),
-				Records = recordRepository.GetAll()
-			};
-            return View(model);
+			//AdminViewModel model = new AdminViewModel
+			//{
+			//	Countries = countryRepository.GetAll(),
+			//	Genres = genreRepository.GetAll(),
+			//	Artists = artistRepository.GetAll(),
+			//	Records = recordRepository.GetAll()
+			//};
+            //return View(model);
+			return View();
         }
 
 		#region Country actions

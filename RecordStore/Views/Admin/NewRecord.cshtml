@@ -45,12 +45,16 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="ArtistId" class="control-label"></label>
-                    <select id="artists-combo" asp-for="ArtistId" class="form-control"></select>
+                    <select id="artists-combo" asp-for="ArtistId" class="form-control">
+                        <option v-for="artist in artists" v-bind:value="artist.ArtistId">{{ artist.Name }} ({{ artist.CountryName }})</option>
+                    </select>
                     <span asp-validation-for="ArtistId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="GenreId" class="control-label"></label>
-                    <select id="genres-combo" asp-for="GenreId" class="form-control"></select>
+                    <select id="genres-combo" asp-for="GenreId" class="form-control">
+                        <option v-for="genre in genres" v-bind:value="genre">{{ genre }}</option>
+                    </select>
                     <span asp-validation-for="GenreId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -72,11 +76,3 @@
         <a asp-action="Index">Back to List</a>
     </div>
 </div>
-
-@section scripts{
-    @Html.Partial("_ValidationScriptsPartial");
-    <script>
-        $(document).ready(GetArtists());
-        $(document).ready(GetGenresToNewRecord());
-    </script>
-}

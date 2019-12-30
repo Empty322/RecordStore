@@ -9,6 +9,7 @@ using TicTacToe.Services;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.Extensions.Options;
+using System.Collections.Generic;
 
 namespace RecordStore.Controllers
 {
@@ -27,10 +28,7 @@ namespace RecordStore.Controllers
 
 		public IActionResult Index()
         {
-			Cart cart = HttpContext.Session.Get<Cart>("cart");
-			if (cart != null)
-				return View(cart);
-			return View(new Cart());
+			return View();
         }
 
 		public IActionResult Add(int id, int count)
@@ -114,6 +112,17 @@ namespace RecordStore.Controllers
 		}
 
 		[Produces("application/json")]
+		[HttpGet("/api/GetProductsInCart")]
+		public IActionResult GetProductsInCart() {
+			Cart cart = HttpContext.Session.Get<Cart>("cart");
+			List<CartLine> products = null;
+			if (cart != null)
+				products = cart.Products;
+			else
+				products = new List<CartLine>();
+			return Ok(JsonConvert.SerializeObject(products));
+		}
+
 		[HttpDelete("api/DeleteItem/{id}")]
 		public IActionResult Delete(int id)
 		{

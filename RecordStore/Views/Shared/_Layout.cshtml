@@ -38,7 +38,7 @@
                 <i class="fas fa-shopping-cart fa-3x"></i>
             </a>
         </div>
-    </header>  
+    </header>
     <div id="vinyl-img">
         <div id="gradient" class="w-100"></div>
     </div>
@@ -69,25 +69,18 @@
             </h6>
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <environment names="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js"></script>
     </environment>
     <environment names="Staging,Production">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery">
-        </script>
         <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
                 asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
         </script>
         <script src="~/js/site.js"></script>
     </environment>
-    <script>
-        $(document).ready(GetGenresToSideMenu());
-    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
