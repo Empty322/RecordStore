@@ -54,7 +54,10 @@ namespace RecordStore.Controllers
 		[HttpPost]
 		public IActionResult NewCountry(Country country)
 		{
-			if(ModelState.IsValid)
+			if (countryRepository.Find(c => c.CountryName.ToLower() == country.CountryName.ToLower()).Any()) {
+				ModelState.AddModelError("CountryName", "This country has already been created");
+			}
+			if (ModelState.IsValid)
 			{
 				countryRepository.Create(country);
 				return RedirectToAction(nameof(Index));
@@ -75,6 +78,9 @@ namespace RecordStore.Controllers
 		[HttpPost]
 		public IActionResult NewGenre(Genre genre)
 		{
+			if(genreRepository.Find(g => g.Id.ToLower() == genre.Id.ToLower()).Any()) {
+				ModelState.AddModelError("Id", "This genre has already been created");
+			}
 			if(ModelState.IsValid)
 			{
 				genreRepository.Create(genre);
