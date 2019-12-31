@@ -1,7 +1,7 @@
 ﻿@{
-    var controller = ViewContext.RouteData.Values["Controller"].ToString();
-    if (controller != "Artists" && controller != "Records") {
-        controller = "Records";
+    var controllerForSearch = ViewContext.RouteData.Values["Controller"].ToString();
+    if (controllerForSearch != "Artists" && controllerForSearch != "Records") {
+        controllerForSearch = "Records";
     }
 }
 
@@ -44,9 +44,9 @@
     </div>
     <div class="container">
         <section class="clearfix">
-            <form asp-controller="@controller" asp-action="Search">
+            <form asp-controller="@controllerForSearch" asp-action="Search">
                 <div class="search">
-                    <input class="search-input" type="text" name="text" placeholder="Search @controller">
+                    <input class="search-input" type="text" name="text" placeholder="Search @controllerForSearch">
                     <button type="submit" class="search-btn">Search</button>
                 </div>
             </form>

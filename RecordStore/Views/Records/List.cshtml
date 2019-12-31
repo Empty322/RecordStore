@@ -17,7 +17,7 @@
                 <p>@r.Artist.Name</p>
                 <div class="cell-btns">
                     <a class="more-record-info" asp-controller="Records" asp-action="Record" asp-route-id="@r.RecordId">More info</a>
-                    <button class="fast-buy" data-toggle="modal" data-target="#exampleModal" v-on:click="setRecordId(@r.RecordId)"><i class="fas fa-shopping-cart"></i>@r.Price$</button>
+                    <button class="fast-buy" data-toggle="modal" data-target="#exampleModal" v-on:click="setRecordId(@r.RecordId)"><i class="fas fa-shopping-cart"></i>@r.Price₽</button>
                 </div>
             </div>
         }
