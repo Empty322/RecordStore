@@ -39,28 +39,30 @@
             </a>
         </div>
     </header>
-    <div id="vinyl-img">
-        <div id="gradient" class="w-100"></div>
-    </div>
-    <div class="container">
-        <section class="clearfix">
-            <form asp-controller="@controllerForSearch" asp-action="Search">
-                <div class="search">
-                    <input class="search-input" type="text" name="text" placeholder="Search @controllerForSearch">
-                    <button type="submit" class="search-btn">Search</button>
+    <div id="mask">
+        <div id="vinyl-img">
+            <div id="gradient" class="w-100"></div>
+        </div>
+        <div class="container">
+            <section>
+                <form asp-controller="@controllerForSearch" asp-action="Search">
+                    <div class="search">
+                        <input class="search-input" type="text" name="text" placeholder="Search @controllerForSearch">
+                        <button type="submit" class="search-btn">Search</button>
+                    </div>
+                </form>
+            </section>
+            <section class="">
+                <div class="row">
+                    <div class="col-12 col-md-3 mb-2">
+                        @Html.Partial("_SideMenu")
+                    </div>
+                    <div class="col-12 col-md-9">
+                        @RenderBody()
+                    </div>
                 </div>
-            </form>
-        </section>
-        <section class="">
-            <div class="row">
-                <div class="col-12 col-md-3 mb-2">
-                    @Html.Partial("_SideMenu")
-                </div>
-                <div class="col-12 col-md-9">
-                    @RenderBody()
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </div>
     <footer>
         <div class="row justify-content-center m-0">
