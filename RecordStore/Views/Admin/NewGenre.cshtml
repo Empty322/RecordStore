@@ -1,7 +1,7 @@
 ﻿@model Genre
 
 @{
-    ViewData["Title"] = "NewGenre";
+    ViewData[ "Title" ] = "NewGenre";
 }
 
 <div class="content">
@@ -27,3 +27,6 @@
         <a asp-action="Index">Back</a>
     </div>
 </div>
+@section scripts{
+    @Html.Partial("_ValidationScriptsPartial");
+}

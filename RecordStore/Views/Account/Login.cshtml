@@ -1,6 +1,6 @@
 ﻿@model LoginViewModel
 @{
-    ViewData["Title"] = "Login";
+    ViewData[ "Title" ] = "Login";
 }
 
 <div class="content">
@@ -27,3 +27,6 @@
         </div>
     </form>
 </div>
+@section scripts{
+    @Html.Partial("_ValidationScriptsPartial");
+}

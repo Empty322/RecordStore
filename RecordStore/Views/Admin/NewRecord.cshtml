@@ -1,7 +1,7 @@
 ﻿@model Record
 
 @{
-    ViewData["Title"] = "NewRecord";
+    ViewData[ "Title" ] = "NewRecord";
 }
 
 <div class="content">
@@ -11,12 +11,10 @@
         <div class="col">
             <form asp-action="NewRecord" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                @if(Model == null)
-                {
+                @if (Model == null) {
                     <input type="hidden" asp-for="RecordId" value="0" />
                 }
-                else
-                {
+                else {
                     <input type="hidden" asp-for="RecordId" />
                 }
                 <div class="form-group">
@@ -76,3 +74,6 @@
         <a asp-action="Index">Back to List</a>
     </div>
 </div>
+@section scripts{
+    @Html.Partial("_ValidationScriptsPartial");
+}

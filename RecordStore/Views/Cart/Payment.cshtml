@@ -1,6 +1,6 @@
 ﻿@model OrderViewModel
 @{
-    ViewData["Title"] = "Payment";
+    ViewData[ "Title" ] = "Payment";
 }
 
 <div class="content">
@@ -20,3 +20,7 @@
         <input name="quickpay-back-url" value="http://localhost:50000/Cart/Payment" type="hidden">
     </form>
 </div>
+
+@section scripts{
+    @Html.Partial("_ValidationScriptsPartial");
+}
